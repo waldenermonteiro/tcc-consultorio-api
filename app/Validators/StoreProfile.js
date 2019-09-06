@@ -1,7 +1,7 @@
 'use strict'
 class StoreProfile {
   get name(){
-    return 'Profile'
+    return 'Perfil'
   }
   get inputs(){
     return ['name']
@@ -14,8 +14,8 @@ class StoreProfile {
   }
   get messages () {
     return {
-      'name.required': 'Field title is required',
-      'name.unique': 'Already have a user with this title, please choose another',
+      'name.required': 'O campo nome é obrigatório.',
+      'name.unique': 'Já existe um perfil com esse nome, por favor, escolha outro.',
     }
   }
 }

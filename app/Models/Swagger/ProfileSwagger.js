@@ -1,6 +1,15 @@
 
 /**
 * @swagger
+*  definitions:
+*    NewProfile:
+*      type: object
+*      properties:
+*        name:
+*          type: string
+*      required:
+*        - name
+*
 * /api/v1/profiles:
 *   get:
 *     tags:

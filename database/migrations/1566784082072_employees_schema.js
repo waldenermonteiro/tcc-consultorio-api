@@ -10,8 +10,8 @@ class EmployeesSchema extends Schema {
       table.string('name', 30).notNullable().unique()
       table.timestamp('deleted_at')
       table.timestamps()
-      table.integer('profile_id').unsigned();
-      table.foreign('profile_id').references('profiles.id').onDelete('cascade');
+      table.integer('user_id').unsigned();
+      table.foreign('user_id').references('users.id').onDelete('cascade');
     })
   }
 
