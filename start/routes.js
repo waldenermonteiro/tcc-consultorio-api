@@ -19,6 +19,12 @@ Route.group('v1', function () {
     Route.post('/profiles', 'ProfileController.create')
     Route.put('/profiles/:id', 'ProfileController.update')
     Route.delete('/profiles/:id', 'ProfileController.remove')
+
+    Route.get('/employees', 'EmployeeController.list')
+    Route.get('/employees/:id', 'EmployeeController.getBydId')
+    Route.post('/employees', 'EmployeeController.create')
+    Route.put('/employees/:id', 'EmployeeController.update')
+    Route.delete('/employees/:id', 'EmployeeController.remove')
 }).prefix('api/v1')
 
 // Route.get('/secure', 'UserController.index').middleware('auth')

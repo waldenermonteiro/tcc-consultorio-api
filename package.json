@@ -27,6 +27,7 @@
     "@adonisjs/session": "^1.0.27",
     "@adonisjs/shield": "^1.0.8",
     "@adonisjs/validator": "^5.0.6",
+    "@waldenermonteiro/adonis-lucid-soft-deletes": "^0.1.4",
     "adonis-swagger": "^1.2.9",
     "pg": "^7.12.1",
     "sqlite3": "^4.0.9"
