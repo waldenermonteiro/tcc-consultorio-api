@@ -9,8 +9,8 @@ class Employee extends Model {
 
         this.addTrait('@provider:Lucid/SoftDeletes')
     }
-    profile () {
-        return this.belongsTo('App/Models/Profile')
+    user () {
+        return this.belongsTo('App/Models/User')
       }
 }
 

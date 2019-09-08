@@ -1,24 +1,27 @@
 'use strict'
+const Validator = use('Validator')
+const existCustomRule = use('App/Validators/Customs/Exists')
+Validator.extend('exists', existCustomRule)
 
 class StoreEmployees {
   get name(){
-    return 'Employee'
+    return 'Funcionário'
   }
   get inputs(){
-    return ['name', 'profile_id']
+    return ['name', 'user_id']
   }
   rules (employeeId) {
     employeeId = employeeId || 0
     return {
       name: `required|unique:employees,name,id,${employeeId}`,
-      profile_id: `required`  
+      user_id: `required|exists:users,id` 
     }
   }
   get messages () {
     return {
-      'name.required': 'Field name is required',
-      'name.unique': 'Already have a user with this title, please choose another',
-      'profile_id.required': 'Field profile_id is required',
+      'name.required': 'O campo nome é obrigatório.',
+      'name.unique': 'Já existe um funcionário com esse nome, por favor, escolha outro.',
+      'user_id.exists' : 'Usuário inexistente, por favor, escolha outro.'
     }
   }
 }

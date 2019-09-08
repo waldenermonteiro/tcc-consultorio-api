@@ -8,8 +8,8 @@ class ProfilesSchema extends Schema {
     this.create('profiles', (table) => {
       table.increments()
       table.string('name', 30).notNullable().unique()
-      table.timestamp('deleted_at')
       table.timestamps()
+      table.timestamp('deleted_at')
     })
   }
 

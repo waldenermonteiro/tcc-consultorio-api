@@ -11,6 +11,7 @@ class UserSchema extends Schema {
       table.string('email', 254).notNullable().unique()
       table.string('password', 60).notNullable()
       table.timestamps()
+      table.timestamp('deleted_at')
       table.integer('profile_id').unsigned();
       table.foreign('profile_id').references('profiles.id').onDelete('cascade');
     })

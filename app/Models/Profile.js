@@ -8,7 +8,11 @@ class Profile extends Model {
         super.boot()
 
         this.addTrait('@provider:Lucid/SoftDeletes')
+        
     }
+    users () {
+        return this.hasOne('App/Models/User')
+      }
 }
 
 module.exports = Profile

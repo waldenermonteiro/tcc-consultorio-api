@@ -5,20 +5,20 @@ class BaseController {
         this.Model = Model
         this.BaseRepository = new BaseRepository(Model, Validator)
     }
-    async list({ request, response }) {
-        return await this.BaseRepository.list({ response })
+    async index({ request, response }) {
+        return await this.BaseRepository.index({ response })
     }
-    async getBydId({ request, response, params }) {
-        return await this.BaseRepository.getBydId({ response, params })
+    async show({ request, response, params }) {
+        return await this.BaseRepository.show({ response, params })
     }
-    async create({ request, response }) {
-        return await this.BaseRepository.create({ request, response })
+    async store({ request, response }) {
+        return await this.BaseRepository.store({ request, response })
     }
     async update({ request, response, params, }) {
         return await this.BaseRepository.update({ request, response, params })
     }
-    async remove({ request, response, params }) {
-        return await this.BaseRepository.remove({ request, response, params })
+    async destroy({ request, response, params }) {
+        return await this.BaseRepository.destroy({ request, response, params })
     }
 }
 module.exports = BaseController

@@ -6,12 +6,12 @@
 *      properties:
 *        name:
 *          type: string
-*        profile_id:
+*        user_id:
 *         type: integer
 *         format: "int32"
 *      required:
 *        - name
-*        - profile_id
+*        - user_id
 *
 * /api/v1/employees:
 *   get:

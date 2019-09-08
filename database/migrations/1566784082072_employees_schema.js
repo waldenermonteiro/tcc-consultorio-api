@@ -8,9 +8,9 @@ class EmployeesSchema extends Schema {
     this.create('employees', (table) => {
       table.increments()
       table.string('name', 30).notNullable().unique()
-      table.timestamp('deleted_at')
       table.timestamps()
-      table.integer('user_id').unsigned();
+      table.timestamp('deleted_at')
+      table.integer('user_id').unsigned().notNullable()
       table.foreign('user_id').references('users.id').onDelete('cascade');
     })
   }

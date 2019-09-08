@@ -1,6 +1,6 @@
 /**
 * @swagger
-* /users/login:
+* /api/v1/users/login:
 *   post:
 *     tags:
 *       - User
@@ -15,7 +15,7 @@
 *       200:
 *         example:
 *           message: Hello Guess
-* /users:
+* /api/v1/users:
 *   get:
 *     tags:
 *       - User
@@ -38,7 +38,7 @@
 *       200:
 *         example:
 *           message: Hello Guess
-* /users/{id}:
+* /api/v1/users/{id}:
 *   get:
 *     security:
 *       - Bearer: []

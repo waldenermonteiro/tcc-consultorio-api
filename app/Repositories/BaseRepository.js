@@ -5,14 +5,14 @@ class BaseRepository {
         this.Model = Model
         this.Validator = new Validator()
     }
-    async list({ request, response }) {
-        const items = await this.Model.withTrashed().fetch()
+    async index({ request, response }) {
+        const items = await this.Model.query().fetch()
         return response.ok({
             status: 200,
             data: items
         })
     }
-    async getBydId({ request, response, params }) {
+    async show({ request, response, params }) {
         try {
             const item = await this.Model.findByOrFail('id', params.id)
             return response.ok({
@@ -23,7 +23,7 @@ class BaseRepository {
             return this.messageNotExistItem(response)
         }
     }
-    async create({ request, response }) {
+    async store({ request, response }) {
         const data = request.only(this.Validator.inputs)
         const validation = await validateAll(data, this.Validator.rules(), this.Validator.messages)
         try {
@@ -34,6 +34,7 @@ class BaseRepository {
                 message: `${this.Validator.name} ${item.name} cadastrado com sucesso`
             })
         } catch (error) {
+            console.log(error)
             return this.messagesValidation(validation, response)
         }
     }
@@ -53,7 +54,7 @@ class BaseRepository {
             return this.messagesValidation(validation, response)
         }
     }
-    async remove({ request, response, params }) {
+    async destroy({ request, response, params }) {
         try {
             const item = await this.Model.findBy('id', params.id)
             return await item.delete()
@@ -61,11 +62,11 @@ class BaseRepository {
             return this.messageNotExistItem(response)
         }
     }
-    messageNotExistItem(response) {
-        return response.badRequest({ status: 400, errors: [{ message: `${this.Validator.name} não encontrado(a)` }] })
+    async messageNotExistItem(response) {
+        return await response.badRequest({ status: 400, errors: [{ message: `${this.Validator.name} não encontrado(a)` }] })
     }
-    messagesValidation(validation, response) {
-        return response.badRequest({
+    async messagesValidation(validation, response) {
+        return await response.badRequest({
             status: 400,
             errors: validation.messages()
         })

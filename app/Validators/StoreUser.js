@@ -1,10 +1,13 @@
 'use strict'
+const Validator = use('Validator')
+const existCustomRule = use('App/Validators/Customs/Exists')
+Validator.extend('exists', existCustomRule)
 class StoreUser {
   get name(){
-    return 'User'
+    return 'Usuário'
   }
   get inputs(){
-    return ['username', 'email', 'password']
+    return ['username', 'email', 'password','profile_id']
   }
   get inputsLogin(){
     return ['email', 'password']
@@ -14,7 +17,8 @@ class StoreUser {
     return {
       username: `required|unique:users,username,id,${userId}`,
       email: `required|unique:users,email,id,${userId}`,
-      password: 'required'
+      password: 'required',
+      profile_id:'required|exists:profiles,id'
     }
   }
   get rulesLogin () {
@@ -25,11 +29,13 @@ class StoreUser {
   }
   get messages () {
     return {
-      'username.required': 'Field username is required',
-      'username.unique': 'Already have a user with this name, please choose another',
-      'email.required': 'Field email is required',
-      'email.unique': 'Already have a user with this email, please choose another',
-      'password.required': 'Field password is required',
+      'username.required': 'O campo nome é obrigatório.',
+      'username.unique': 'Já existe um usuário com esse nome, por favor, escolha outro.',
+      'email.required': 'O campo email é obrigatório.',
+      'email.unique': 'Já existe um usuário com esse email, por favor, escolha outro.',
+      'password.required': 'O campo senha é obrigatório.',
+      'profile_id.required': 'O campo perfil é obrigatório.',
+      'profile_id.exists': 'Perfil inexistente, por favor, escolha outro.'
     }
   }
 }
