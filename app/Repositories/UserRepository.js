@@ -13,29 +13,30 @@ class UserRepository extends BaseRepository {
         const data = request.only(this.Validator.inputs)
         const validation = await validateAll(data, this.Validator.rulesLogin, this.Validator.messages)
         try {
+            await this.verifyValidation(validation)
             const params = { auth, request, response, self: this }
-            return await this.getUser(params, this.validateUser)
+            return await this.getUser(params)
         } catch (error) {
             return this.messagesValidation(validation, response)
         }
     }
-    async getUser(params, callback) {
+    async getUser(params) {
         try {
             const user = await this.Model.findBy({ email: params.request.body.email })
-            return await callback({ ...params, user: user })
+            return await this.validateUser({ ...params, user: user })
         } catch (error) {
             return params.response.badRequest({ status: 400, errors: [{ message: `Email ou senha inválidos` }] })
         }
     }
     async validateUser(params) {
-        return await params.self.verifyPassword(params, params.user.password, params.self.userLogger)
-    }
-    async verifyPassword(params, hashedPassword, callback) {
-        const isSame = await Hash.verify(params.request.body.password, hashedPassword)
-        if (isSame) {
-            return callback(params)
+        const password = params.request.body.password
+        const hashedPassword = params.user.password
+        try {
+            await this.verifyPassword(password, hashedPassword)
+            return await this.userLogger(params)
+        } catch (error) {
+            return params.response.badRequest({ status: 400, errors: [{ message: `Email ou senha inválidos` }] })
         }
-        return params.response.badRequest({ status: 400, errors: [{ message: `Email ou senha inválidos` }] })
     }
     async userLogger(params) {
         let token = await params.auth.generate(params.user, true)
@@ -43,6 +44,13 @@ class UserRepository extends BaseRepository {
             status: 200,
             data: { user: params.user, token }
         })
+    }
+    async verifyValidation(validation) {
+        if (validation.errorMessages !== null) throw 'Error'
+    }
+    async verifyPassword(password, hashedPassword) {
+        const ifPasswordsEquals = await Hash.verify(password, hashedPassword)
+        if (!ifPasswordsEquals) throw 'Error'
     }
     async store({ request, response }) {
         const data = request.only(this.Validator.inputs)

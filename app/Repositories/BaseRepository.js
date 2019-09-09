@@ -34,7 +34,6 @@ class BaseRepository {
                 message: `${this.Validator.name} ${item.name} cadastrado com sucesso`
             })
         } catch (error) {
-            console.log(error)
             return this.messagesValidation(validation, response)
         }
     }
