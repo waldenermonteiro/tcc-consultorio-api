@@ -10,9 +10,6 @@ class Profile extends Model {
         this.addTrait('@provider:Lucid/SoftDeletes')
         
     }
-    users () {
-        return this.hasOne('App/Models/User')
-      }
 }
 
 module.exports = Profile

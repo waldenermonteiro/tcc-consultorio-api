@@ -21,7 +21,8 @@ const providers = [
   '@adonisjs/auth/providers/AuthProvider',
   '@adonisjs/validator/providers/ValidatorProvider',
   'adonis-swagger/providers/SwaggerProvider',
-  '@waldenermonteiro/adonis-lucid-soft-deletes/providers/SoftDeletesProvider'
+  '@waldenermonteiro/adonis-lucid-soft-deletes/providers/SoftDeletesProvider',
+  '@adonisjs/antl/providers/AntlProvider'
 ]
 
 /*
