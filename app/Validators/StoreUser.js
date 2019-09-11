@@ -27,7 +27,7 @@ class StoreUser {
       password: 'required'
     }
   }
-  get messages () {
+/*   get messages () {
     return {
       'username.required': 'O campo nome é obrigatório.',
       'username.unique': 'Já existe um usuário com esse nome, por favor, escolha outro.',
@@ -37,7 +37,7 @@ class StoreUser {
       'profile_id.required': 'O campo perfil é obrigatório.',
       'profile_id.exists': 'Perfil inexistente, por favor, escolha outro.'
     }
-  }
+  } */
 }
 
 module.exports = StoreUser

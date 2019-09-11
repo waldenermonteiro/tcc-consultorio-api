@@ -65,7 +65,6 @@ class BaseRepository {
         return await response.badRequest({ status: 400, errors: [{ message: `${this.Validator.name} não encontrado(a)` }] })
     }
     async messagesValidation(validation, response) {
-        console.log(validation)
         return await response.badRequest({
             status: 400,
             errors: validation.messages()

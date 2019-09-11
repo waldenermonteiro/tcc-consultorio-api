@@ -52,7 +52,7 @@ class UserRepository extends BaseRepository {
         const ifPasswordsEquals = await Hash.verify(password, hashedPassword)
         if (!ifPasswordsEquals) throw 'Error'
     }
-    async store({ request, response }) {
+    async store({ auth, request, response }) {
         const data = request.only(this.Validator.inputs)
         const validation = await validateAll(data, this.Validator.rules(), this.Validator.messages)
         try {
@@ -61,9 +61,10 @@ class UserRepository extends BaseRepository {
             return response.ok({
                 status: 200,
                 data: { user, token },
-                message: `${this.Validator.name} ${item.username} cadastrado com sucesso`
+                message: `${this.Validator.name} ${user.username} cadastrado com sucesso`
             })
         } catch (error) {
+            console.log(validation)
             return this.messagesValidation(validation, response)
         }
     }
