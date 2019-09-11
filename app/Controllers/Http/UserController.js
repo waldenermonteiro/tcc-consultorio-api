@@ -17,7 +17,7 @@ class UserController extends BaseController {
         const token = await auth.generate(user, true)
         return token
     }
-    async store({ request, response }) {
+    async store({ auth, request, response }) {
         return await this.UserRepository.store({ auth, request, response })
     }
 }

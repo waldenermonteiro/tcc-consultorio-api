@@ -70,5 +70,18 @@ class BaseRepository {
             errors: validation.messages()
         })
     }
+    async messagesValidations(validations, response) {
+        const errorsMessages = []
+        validations.map( validation => {
+            const arrayMessages = validation.messages() || []
+            arrayMessages.map(message => {
+                errorsMessages.push(message)
+            })
+        })
+        return await response.badRequest({
+            status: 400,
+            errors: errorsMessages
+        })
+    }
 }
 module.exports = BaseRepository

@@ -10,7 +10,7 @@ class StoreEmployees {
   get inputs() {
     return ['name', 'email', 'password', 'profile_id']
   }
-  /*   rules (employeeId) {
+     rules (employeeId) {
       employeeId = employeeId || 0
       return {
         name: `required|unique:employees,name,id,${employeeId}`,
@@ -21,10 +21,10 @@ class StoreEmployees {
       return {
         'name.required': 'O campo nome é obrigatório.',
         'name.unique': 'Já existe um funcionário com esse nome, por favor, escolha outro.',
-        'user_id.required' : 'O campo usuário é obrigatório',
+        'user_id.required' : 'O campo usuário é obrigatório.',
         'user_id.exists' : 'Usuário inexistente, por favor, escolha outro.'
       }
-    } */
+    } 
 }
 
 module.exports = StoreEmployees

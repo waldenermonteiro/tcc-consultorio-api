@@ -1,12 +1,14 @@
 'use strict'
 const { validateAll } = use('Validator')
-const BaseRepository = use('App/Repositories/BaseRepository')
 const Database = use('Database')
+const BaseRepository = use('App/Repositories/BaseRepository')
 class EmployeeRepository extends BaseRepository {
-    constructor(Model, Validator) {
+    constructor(Model, User, Validator, UserValidator) {
         super(Model, Validator)
         this.Model = Model
+        this.User = User
         this.Validator = new Validator()
+        this.UserValidator = new UserValidator()
     }
     async index({ request, response }) {
         const items = await this.Model.query().with('user').fetch()
@@ -23,19 +25,22 @@ class EmployeeRepository extends BaseRepository {
         })
     }
     async store({ request, response }) {
-        const data = request.only(this.Validator.inputs)
+        const data = request.only(this.UserValidator.inputs)
+        const validation = await validateAll(data, this.UserValidator.rules(), this.UserValidator.messages)
+        const trx = await Database.beginTransaction()
         try {
-            await Database.transaction(async (trx) => {
-                await trx.insert({ username: data.name, email: data.email, password: data.password, profile_id: data.profile_id }).into('users')
-                const user = await trx.from('users').where({ email: data.email }).first()
-                await trx.insert({ name: user.username, user_id: user.id }).into('employees')
-            })
+            const user = await this.User.create({ username: data.username, email: data.email, password: data.password, profile_id: data.profile_id }, trx)
+            user.save()
+            const employee = await this.Model.create({ name: user.username, user_id: user.id }, trx)
+            employee.save()
+            await trx.commit()
             return response.ok({
                 status: 200,
-                message: 'cadastrado com sucesso'
+                message: `Funcionário ${user.username} cadastrado com sucesso`
             })
         } catch (error) {
-
+            await trx.rollback()
+            return this.messagesValidation(validation, response)
         }
     }
 }
