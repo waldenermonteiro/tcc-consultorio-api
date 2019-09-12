@@ -7,7 +7,7 @@ class StoreUser {
     return 'Usuário'
   }
   get inputs() {
-    return ['username', 'email', 'password', 'profile_id']
+    return ['email', 'password', 'profile_id']
   }
   get inputsLogin() {
     return ['email', 'password']
@@ -15,9 +15,8 @@ class StoreUser {
   rules(userId) {
     userId = userId || 0
     return {
-      username: `required|unique:users,username,id,${userId}`,
-      email: `required|unique:users,email,id,${userId}`,
-      password: 'required',
+      email: `required|unique:users,email,id,${userId}|max:250`,
+      password: 'required|max:60',
       profile_id: 'required|exists:profiles,id'
     }
   }
@@ -29,11 +28,11 @@ class StoreUser {
   }
   get messages() {
     return {
-      'username.required': 'O campo nome é obrigatório.',
-      'username.unique': 'Já existe um usuário com esse nome, por favor, escolha outro.',
       'email.required': 'O campo email é obrigatório.',
       'email.unique': 'Já existe um usuário com esse email, por favor, escolha outro.',
+      'email.max': 'O campo email aceita até 250 caracteres, por favor, tente novamente.',
       'password.required': 'O campo senha é obrigatório.',
+      'password.max': 'O campo senha aceita até 60 caracteres, por favor, tente novamente.',
       'profile_id.required': 'O campo perfil é obrigatório.',
       'profile_id.exists': 'Perfil inexistente, por favor, escolha outro.'
     }

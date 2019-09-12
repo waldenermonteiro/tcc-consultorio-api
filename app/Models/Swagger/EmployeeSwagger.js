@@ -6,10 +6,17 @@
 *      properties:
 *        name:
 *          type: string
-*        user_id:
+*        email:
+*          type: string
+*        password:
+*          type: string
+*          format: password
+*        profile_id:
 *         type: integer
 *         format: "int32"
 *      required:
 *        - name
-*        - user_id
+*        - email
+*        - password
+*        - profile_id
 */

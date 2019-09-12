@@ -61,7 +61,7 @@ class UserRepository extends BaseRepository {
             return response.ok({
                 status: 200,
                 data: { user, token },
-                message: `${this.Validator.name} ${user.username} cadastrado com sucesso`
+                message: `${this.Validator.name} ${user.email} cadastrado com sucesso`
             })
         } catch (error) {
             console.log(validation)

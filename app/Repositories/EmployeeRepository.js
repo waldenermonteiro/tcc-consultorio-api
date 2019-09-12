@@ -25,22 +25,24 @@ class EmployeeRepository extends BaseRepository {
         })
     }
     async store({ request, response }) {
-        const data = request.only(this.UserValidator.inputs)
-        const validation = await validateAll(data, this.UserValidator.rules(), this.UserValidator.messages)
+        const data = request.only(this.Validator.inputs)
+        const validation = await validateAll(data, this.Validator.rules(), this.Validator.messages)
+        const dataUser = request.only(this.UserValidator.inputs)
+        const validationUser = await validateAll(data, this.UserValidator.rules(), this.UserValidator.messages)
         const trx = await Database.beginTransaction()
         try {
-            const user = await this.User.create({ username: data.username, email: data.email, password: data.password, profile_id: data.profile_id }, trx)
+            const user = await this.User.create({ email: dataUser.email, password: dataUser.password, profile_id: dataUser.profile_id }, trx)
             user.save()
-            const employee = await this.Model.create({ name: user.username, user_id: user.id }, trx)
+            const employee = await this.Model.create({ name: data.name, user_id: user.id }, trx)
             employee.save()
             await trx.commit()
             return response.ok({
                 status: 200,
-                message: `Funcionário ${user.username} cadastrado com sucesso`
+                message: `Funcionário(a) ${employee.name} cadastrado com sucesso`
             })
         } catch (error) {
             await trx.rollback()
-            return this.messagesValidation(validation, response)
+            return this.messagesValidations([validationUser, validation], response)
         }
     }
 }

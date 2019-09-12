@@ -56,7 +56,11 @@ class BaseRepository {
     async destroy({ request, response, params }) {
         try {
             const item = await this.Model.findBy('id', params.id)
-            return await item.delete()
+            await item.delete()
+            return await response.badRequest({
+                status: 200,
+                message:  `${this.Validator.name} excluído(a) com sucesso`
+            })
         } catch (error) {
             return this.messageNotExistItem(response)
         }
