@@ -7,7 +7,7 @@ class EmployeesSchema extends Schema {
   up () {
     this.create('employees', (table) => {
       table.increments()
-      table.string('name', 30).notNullable().unique()
+      table.string('name', 100).notNullable().unique()
       table.timestamps()
       table.timestamp('deleted_at')
       table.integer('user_id').unsigned().notNullable()
