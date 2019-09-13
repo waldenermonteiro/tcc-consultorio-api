@@ -57,7 +57,7 @@ class BaseRepository {
         try {
             const item = await this.Model.findBy('id', params.id)
             await item.delete()
-            return await response.badRequest({
+            return await response.ok({
                 status: 200,
                 message:  `${this.Validator.name} excluído(a) com sucesso`
             })
