@@ -10,6 +10,13 @@ class PatientRepository extends BaseRepository {
         this.Validator = new Validator()
         this.UserValidator = new UserValidator()
     }
+    async index({ request, response }) {
+        const items = await this.Model.query().with('user').fetch()
+        return response.ok({
+            status: 200,
+            data: items
+        })
+    }
     async store({ request, response }) {
         const data = request.only(this.Validator.inputs)
         const dataUser = request.only(this.UserValidator.inputs)
@@ -25,6 +32,29 @@ class PatientRepository extends BaseRepository {
             return response.ok({
                 status: 200,
                 message: `Paciente ${patient.name} cadastrado com sucesso`
+            })
+        } catch (error) {
+            await trx.rollback()
+            return this.messagesValidations([validationUser, validation], response)
+        }
+    }
+    async update({ request, response, params }) {
+        const data = request.only(this.Validator.inputs)
+        const dataUser = request.only(this.UserValidator.inputsUpdate)
+        const validation = await validateAll(data, this.Validator.rules(params.id), this.Validator.messages)
+        const validationUser = await validateAll(dataUser, this.UserValidator.rulesUpdate(params.user_id), this.UserValidator.messages)
+        const trx = await Database.beginTransaction()
+        try {
+            const patient = await this.Model.findByOrFail('id', params.id)
+            await patient.merge(data, trx)
+            await patient.save()
+            const user = await this.User.findByOrFail('id', patient.user_id)
+            await user.merge(dataUser, trx)
+            await user.save()
+            await trx.commit()
+            return response.ok({
+                status: 200,
+                message: `Paciente ${patient.name} atualiado com sucesso`
             })
         } catch (error) {
             await trx.rollback()

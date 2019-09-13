@@ -26,7 +26,7 @@ class EmployeeRepository extends BaseRepository {
     }
     async store({ request, response }) {
         const data = request.only(this.Validator.inputs)
-        const validation = await validateAll(data, this.Validator.rules(), this.Validator.messages)
+        const validation = await validateAll(data, this.Validator.rules(params.id), this.Validator.messages)
         const dataUser = request.only(this.UserValidator.inputs)
         const validationUser = await validateAll(dataUser, this.UserValidator.rules(), this.UserValidator.messages)
         const trx = await Database.beginTransaction()

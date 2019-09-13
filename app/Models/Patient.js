@@ -10,7 +10,7 @@ class Patient extends Model {
         this.addTrait('@provider:Lucid/SoftDeletes')
     }
     user() {
-        return this.hasOne('App/Models/User')
+        return this.belongsTo('App/Models/User')
     }
 }
 

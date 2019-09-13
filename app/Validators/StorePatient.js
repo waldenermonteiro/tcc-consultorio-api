@@ -7,7 +7,7 @@ class StorePatient {
     return 'Paciente'
   }
   get inputs() {
-    return ['name', 'birth_date', 'address', 'city', 'state', 'sex', 'user_id']
+    return ['name', 'birth_date', 'address', 'city', 'state', 'sex']
   }
   rules(patientId) {
     patientId = patientId || 0

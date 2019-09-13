@@ -5,7 +5,6 @@ const StoreEmployee = use('App/Validators/StoreEmployee')
 const StoreUser = use('App/Validators/StoreUser')
 const BaseController = use('App/Controllers/Http/BaseController')
 const EmployeeRepository = use('App/Repositories/EmployeeRepository')
-
 class EmployeeController extends BaseController {
   constructor() {
     super(Employee, StoreEmployee)
