@@ -64,7 +64,6 @@ class UserRepository extends BaseRepository {
                 message: `${this.Validator.name} ${user.email} cadastrado com sucesso`
             })
         } catch (error) {
-            console.log(validation)
             return this.messagesValidation(validation, response)
         }
     }

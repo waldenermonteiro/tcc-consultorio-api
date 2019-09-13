@@ -11,8 +11,14 @@ class EmployeeController extends BaseController {
     super(Employee, StoreEmployee)
     this.EmployeeRepository = new EmployeeRepository(Employee, User, StoreEmployee, StoreUser)
   }
-  async store({ auth, request, response }) {
-    return await this.EmployeeRepository.store({ auth, request, response })
+  async index({ request, response }) {
+    return await this.EmployeeRepository.index({ request, response })
+  }
+  async store({ request, response }) {
+    return await this.EmployeeRepository.store({ request, response })
+  }
+  async update({ request, response, params }) {
+    return await this.EmployeeRepository.update({ request, response, params })
   }
 }
 module.exports = EmployeeController

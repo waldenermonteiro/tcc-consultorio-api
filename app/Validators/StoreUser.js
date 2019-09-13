@@ -9,6 +9,9 @@ class StoreUser {
   get inputs() {
     return ['email', 'password', 'profile_id']
   }
+  get inputsUpdate() {
+    return ['email']
+  }
   get inputsLogin() {
     return ['email', 'password']
   }
@@ -18,6 +21,12 @@ class StoreUser {
       email: `required|unique:users,email,id,${userId}|max:250`,
       password: 'required|max:60',
       profile_id: 'required|exists:profiles,id'
+    }
+  }
+  rulesUpdate(userId) {
+    userId = userId || 0
+    return {
+      email: `required|unique:users,email,id,${userId}|max:250`,
     }
   }
   get rulesLogin() {
