@@ -28,7 +28,7 @@ class EmployeeRepository extends BaseRepository {
         const data = request.only(this.Validator.inputs)
         const validation = await validateAll(data, this.Validator.rules(), this.Validator.messages)
         const dataUser = request.only(this.UserValidator.inputs)
-        const validationUser = await validateAll(data, this.UserValidator.rules(), this.UserValidator.messages)
+        const validationUser = await validateAll(dataUser, this.UserValidator.rules(), this.UserValidator.messages)
         const trx = await Database.beginTransaction()
         try {
             const user = await this.User.create({ email: dataUser.email, password: dataUser.password, profile_id: dataUser.profile_id }, trx)
@@ -42,7 +42,7 @@ class EmployeeRepository extends BaseRepository {
             })
         } catch (error) {
             await trx.rollback()
-            return this.messagesValidations([validationUser, validation], response)
+            return this.messagesValidations([validation, validationUser], response)
         }
     }
 }
