@@ -21,6 +21,9 @@ class User extends Model {
       }
     })
   }
+  static get dates () {
+    return super.dates.concat(['deleted_at'])
+  }
 
   /**
    * A relationship on tokens is required for auth to

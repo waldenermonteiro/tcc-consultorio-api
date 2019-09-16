@@ -8,7 +8,10 @@ Route.on('/').render('welcome')
 Route.group('v1', function () {
     Route.resource('profiles', 'ProfileController').apiOnly()
     Route.resource('employees', 'EmployeeController').apiOnly()
+    // Route.get('excludes/employees', 'EmployeeController.indexOnlyTrashed')
+
     Route.resource('patients', 'PatientController').apiOnly()
+    
     Route.get('/secure', 'UserController.index').middleware('auth')
     Route.post('users/login', 'UserController.login')
     Route.get('/auth/:id', 'UserController.auth')

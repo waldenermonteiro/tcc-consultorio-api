@@ -12,6 +12,13 @@ class BaseRepository {
             data: items
         })
     }
+    async indexOnlyTrashed({ request, response }) {
+        const items = await this.Model.query().withTrashed().fetch()
+        return response.ok({
+            status: 200,
+            data: items,
+        })
+    }
     async show({ request, response, params }) {
         try {
             const item = await this.Model.findByOrFail('id', params.id)

@@ -10,6 +10,9 @@ class Profile extends Model {
         this.addTrait('@provider:Lucid/SoftDeletes')
         
     }
+    static get dates () {
+        return super.dates.concat(['deleted_at'])
+      }
 }
 
 module.exports = Profile
