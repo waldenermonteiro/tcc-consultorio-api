@@ -12,7 +12,7 @@ Essa API possui algumas bibliotecas já instaladas e configuradas:
 
 ### Instalação
 
-Antes de instalar, baixe e instale o Node.js. Node.js 0.10 ou superior é obrigatório.
+Antes de instalar, baixe e instale o Node.js. Node.js 0.10 ou superior é obrigatório nesse projeto.
 
 Instale as dependências e inicie o servidor.
 
