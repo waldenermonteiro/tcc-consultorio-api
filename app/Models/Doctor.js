@@ -9,9 +9,12 @@ class Doctor extends Model {
 
         this.addTrait('@provider:Lucid/SoftDeletes')
     }
-    static get dates () {
+    static get dates() {
         return super.dates.concat(['deleted_at'])
-      }
+    }
+    specialitie() {
+        return this.belongsTo('App/Models/Specialitie')
+    }
     user() {
         return this.belongsTo('App/Models/User')
     }

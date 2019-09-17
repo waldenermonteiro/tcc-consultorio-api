@@ -38,7 +38,7 @@ class BaseRepository {
             return response.ok({
                 status: 200,
                 data: item,
-                message: `${this.Validator.name} ${item.name} cadastrado com sucesso`
+                message: `${this.Validator.name} ${item.name} cadastrado(a) com sucesso`
             })
         } catch (error) {
             return this.messagesValidation(validation, response)
@@ -54,7 +54,7 @@ class BaseRepository {
             return response.ok({
                 status: 200,
                 data: item,
-                message: `${this.Validator.name} ${item.name} atualizado com sucesso`
+                message: `${this.Validator.name} ${item.name} atualizado(a) com sucesso`
             })
         } catch (error) {
             return this.messagesValidation(validation, response)

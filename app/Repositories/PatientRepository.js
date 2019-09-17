@@ -31,7 +31,7 @@ class PatientRepository extends BaseRepository {
             await trx.commit()
             return response.ok({
                 status: 200,
-                message: `Paciente ${patient.name} cadastrado com sucesso`
+                message: `Paciente ${patient.name} cadastrado(a) com sucesso`
             })
         } catch (error) {
             await trx.rollback()
@@ -54,7 +54,7 @@ class PatientRepository extends BaseRepository {
             await trx.commit()
             return response.ok({
                 status: 200,
-                message: `Paciente ${patient.name} atualiado com sucesso`
+                message: `Paciente ${patient.name} atualizado(a) com sucesso`
             })
         } catch (error) {
             await trx.rollback()

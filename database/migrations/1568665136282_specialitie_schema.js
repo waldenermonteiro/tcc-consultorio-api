@@ -7,6 +7,8 @@ class SpecialitieSchema extends Schema {
   up () {
     this.create('specialities', (table) => {
       table.increments()
+      table.string('name', 100).notNullable().unique()
+      table.timestamp('deleted_at')
       table.timestamps()
     })
   }
