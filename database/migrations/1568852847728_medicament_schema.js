@@ -10,8 +10,8 @@ class MedicamentSchema extends Schema {
       table.string('name', 100).notNullable().unique()
       table.string('factory', 50).notNullable()
       table.string('manufacturer', 50).notNullable()
-      table.timestamp('deleted_at')
       table.timestamps()
+      table.timestamp('deleted_at')
     })
   }
 

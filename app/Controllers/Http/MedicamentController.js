@@ -1,10 +1,10 @@
 'use strict'
 const Medicament = use('App/Models/Medicament')
-const Medicament = use('App/Validators/Medicament')
+const StoreMedicament = use('App/Validators/StoreMedicament')
 const BaseController = use('App/Controllers/Http/BaseController')
-class Medicament extends BaseController {
+class MedicamentController extends BaseController {
   constructor() {
-    super(Medicament, Medicament)
+    super(Medicament, StoreMedicament)
   }
 }
-module.exports = Medicament
+module.exports = MedicamentController
