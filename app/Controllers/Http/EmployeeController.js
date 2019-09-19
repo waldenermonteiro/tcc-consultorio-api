@@ -13,8 +13,8 @@ class EmployeeController extends BaseController {
   async index({ request, response }) {
     return await this.EmployeeRepository.index({ request, response })
   }
-  async store({ request, response }) {
-    return await this.EmployeeRepository.store({ request, response })
+  async store({ request, response, params }) {
+    return await this.EmployeeRepository.store({ request, response, params })
   }
   async update({ request, response, params }) {
     return await this.EmployeeRepository.update({ request, response, params })

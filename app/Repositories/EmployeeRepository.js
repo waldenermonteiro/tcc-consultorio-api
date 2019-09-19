@@ -24,16 +24,16 @@ class EmployeeRepository extends BaseRepository {
             data: items,
         })
     }
-    async store({ request, response }) {
+    async store({ request, response, params }) {
         const data = request.only(this.Validator.inputs)
         const validation = await validateAll(data, this.Validator.rules(params.id), this.Validator.messages)
         const dataUser = request.only(this.UserValidator.inputs)
         const validationUser = await validateAll(dataUser, this.UserValidator.rules(), this.UserValidator.messages)
         const trx = await Database.beginTransaction()
         try {
-            const user = await this.User.create({ email: dataUser.email, password: dataUser.password, profile_id: dataUser.profile_id }, trx)
+            const user = await this.User.create({ ...dataUser}, trx)
             user.save()
-            const employee = await this.Model.create({ name: data.name, user_id: user.id }, trx)
+            const employee = await this.Model.create({ ...data, user_id: user.id }, trx)
             employee.save()
             await trx.commit()
             return response.ok({

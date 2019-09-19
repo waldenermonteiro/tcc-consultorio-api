@@ -24,9 +24,9 @@ class PatientRepository extends BaseRepository {
         const validationUser = await validateAll(dataUser, this.UserValidator.rules(), this.UserValidator.messages)
         const trx = await Database.beginTransaction()
         try {
-            const user = await this.User.create({ email: dataUser.email, password: dataUser.password, profile_id: dataUser.profile_id }, trx)
+            const user = await this.User.create({...dataUser}, trx)
             user.save()
-            const patient = await this.Model.create({ name: data.name, birth_date: data.birth_date, address: data.address, city: data.city, state: data.state, sex: data.sex, user_id: user.id }, trx)
+            const patient = await this.Model.create({...data, user_id: user.id }, trx)
             patient.save()
             await trx.commit()
             return response.ok({
