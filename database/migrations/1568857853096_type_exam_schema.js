@@ -5,14 +5,15 @@ const Schema = use('Schema')
 
 class ExamTypesSchema extends Schema {
   up () {
-    this.create('exam_types', (table) => {
+    this.create('type_exams', (table) => {
       table.increments()
+      table.string('name', 30).notNullable().unique()
       table.timestamps()
     })
   }
 
   down () {
-    this.drop('exam_types')
+    this.drop('type_exams')
   }
 }
 
