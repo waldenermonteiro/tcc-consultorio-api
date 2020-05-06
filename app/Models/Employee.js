@@ -12,6 +12,9 @@ class Employee extends Model {
     static get dates () {
         return super.dates.concat(['deleted_at'])
       }
+    specialitie() {
+        return this.belongsTo('App/Models/Specialitie')
+    }
     user() {
         return this.belongsTo('App/Models/User')
     }
