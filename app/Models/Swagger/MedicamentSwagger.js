@@ -1,7 +1,7 @@
 /**
 * @swagger
 *  definitions:
-*    NewEmployee:
+*    NewMedicament:
 *      type: object
 *      properties:
 *        name:
