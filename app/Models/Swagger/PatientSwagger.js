@@ -5,25 +5,26 @@
 *     type: object
 *     required:
 *       - name
-*       - email
-*       - password
 *       - birth_date
+*       - rg
+*       - cpf
 *       - address
 *       - city
 *       - state
 *       - sex
+*       - email
+*       - password
 *       - profile_id
 *     properties:
 *       name:
 *         type: string
-*       email:
-*         type: string
-*       password:
-*         type: string
-*         format: password
 *       birth_date:
 *         type: string
 *         format: date
+*       rg:
+*         type: string
+*       cpf:
+*         type: string
 *       address:
 *         type: string
 *       city:
@@ -32,6 +33,11 @@
 *         type: string
 *       sex:
 *         type: string
+*       email:
+*         type: string
+*       password:
+*         type: string
+*         format: password
 *       profile_id:
 *         type: integer
 *         format: "int32"
