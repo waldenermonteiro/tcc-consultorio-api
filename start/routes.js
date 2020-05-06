@@ -6,7 +6,6 @@ const Route = use('Route')
 
 Route.on('/').render('welcome')
 Route.group('v1', function () {
-    Route.resource('doctors', 'DoctorController').apiOnly()
     Route.resource('employees', 'EmployeeController').apiOnly()
     Route.resource('medicaments', 'MedicamentController').apiOnly()
     Route.resource('patients', 'PatientController').apiOnly()
