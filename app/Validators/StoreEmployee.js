@@ -22,7 +22,8 @@ class StoreEmployees {
         'name.required': 'O campo nome é obrigatório.',
         'name.unique': 'Já existe um funcionário com esse nome, por favor, escolha outro.',
         'name.max': 'O campo nome aceita até 250 caracteres, por favor, tente novamente.',
-        'specialitie_id.required': 'O campo especialidade é obrigatório.'
+        'specialitie_id.required': 'O campo especialidade é obrigatório.',
+        'specialitie_id.exists': 'Especialidade não encontrada.'
       }
     } 
 }

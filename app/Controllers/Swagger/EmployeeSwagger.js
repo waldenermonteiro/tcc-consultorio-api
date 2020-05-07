@@ -6,11 +6,10 @@
 *       - Employee
 *     summary: List Employee
 *     parameters:
-*       - name: title
-*         description: Title of the Employees
+*       - name: specialitie_id
 *         in: query
-*         required: false
-*         type: string
+*         type: integer
+*         format: "int32"
 *     responses:
 *       200:
 *         description: Send hello message
