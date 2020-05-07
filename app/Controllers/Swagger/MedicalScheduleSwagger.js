@@ -6,11 +6,19 @@
 *       - Medical Schedule
 *     summary: List Medical Schedule
 *     parameters:
-*       - name: title
-*         description: Title of the Medical Schedules
+*       - name: name
 *         in: query
-*         required: false
 *         type: string
+*       - name: employee_id
+*         in: query
+*         type: integer
+*         format: "int32"
+*       - name: patient_id
+*         in: query
+*         type: integer
+*         format: "int32"
+*         schema:
+*           $ref: '#/definitions/NewMedicalSchedule'
 *     responses:
 *       200:
 *         description: Send hello message

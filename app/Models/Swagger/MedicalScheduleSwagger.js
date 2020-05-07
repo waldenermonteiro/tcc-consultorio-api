@@ -9,11 +9,14 @@
 *        date_appointment:
 *          type: string
 *        status:
-*          type: boolean
+*          type: string
 *        patient_id:
 *         type: integer
 *         format: "int32"
 *        prescription_medicament_id:
+*         type: integer
+*         format: "int32"
+*        employee_id:
 *         type: integer
 *         format: "int32"
 *      required:
@@ -21,5 +24,5 @@
 *        - date_appointment
 *        - status
 *        - patient_id
-*        - prescription_medicament_id
+*        - employee_id
 */
