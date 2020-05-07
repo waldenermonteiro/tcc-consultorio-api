@@ -7,13 +7,14 @@ class MedicalScheduleSchema extends Schema {
   up () {
     this.create('medical_schedules', (table) => {
       table.increments()
-      table.string('name', 30).notNullable().unique()
+      table.string('name', 100).notNullable().unique()
       table.datetime('date_appointment').notNullable()
-      table.boolean('status').notNullable()
+      table.enu('status', ['Agendada', 'Em andamento', 'Finalizada', 'Cancelada']).notNullable()
       table.timestamps()
       table.timestamp('deleted_at')
       table.integer('patient_id').unsigned().notNullable().references('patients.id').onDelete('cascade')
-      table.integer('prescription_medicament_id').unsigned().notNullable().references('prescription_medicaments.id').onDelete('cascade')
+      table.integer('prescription_medicament_id').unsigned().references('prescription_medicaments.id').onDelete('cascade')
+      table.integer('employee_id').unsigned().notNullable().references('employees.id').onDelete('cascade')
     })
   }
 

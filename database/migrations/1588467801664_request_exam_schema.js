@@ -8,6 +8,7 @@ class RequestExamSchema extends Schema {
     this.create('request_exams', (table) => {
       table.increments()
       table.timestamp('deleted_at')
+      table.enu('status', ['Agendado', 'Em andamento', 'Finalizado', 'Cancelado']).notNullable()
       table.integer('type_exam_id').unsigned().notNullable().references('type_exams.id').onDelete('cascade')
       table.integer('medical_schedule_id').unsigned().notNullable().references('medical_schedules.id').onDelete('cascade')
     })
