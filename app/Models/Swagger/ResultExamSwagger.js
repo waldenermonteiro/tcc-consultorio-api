@@ -7,7 +7,7 @@
  *        result:
  *          type: object
  *        status:
- *          type: boolean
+ *          type: string
  *        request_exam_id:
  *         type: integer
  *         format: "int32"

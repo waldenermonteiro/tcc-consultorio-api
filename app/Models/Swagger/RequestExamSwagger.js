@@ -5,7 +5,7 @@
  *      type: object
  *      properties:
  *        status:
- *          type: boolean
+ *          type: string
  *        type_exam_id:
  *         type: integer
  *         format: "int32"
