@@ -14,7 +14,7 @@ class PatientSchema extends Schema {
       table.string('address', 250).notNullable()
       table.string('city', 50).notNullable()
       table.string('state', 30).notNullable()
-      table.enu('sex', ['Masculino', 'Feminino']).notNullable()
+      table.enu('sex', ['Masculino', 'Feminino', 'Não Binário']).notNullable()
       table.timestamps()
       table.timestamp('deleted_at')
       table.integer('user_id').unsigned();
