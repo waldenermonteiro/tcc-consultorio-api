@@ -6,7 +6,7 @@ class BaseController {
         this.BaseRepository = new BaseRepository(Model, Validator)
     }
     async index({ request, response }) {
-        return await this.BaseRepository.index({ response })
+        return await this.BaseRepository.index({ request, response })
     }
     async show({ request, response, params }) {
         return await this.BaseRepository.show({ response, params })
