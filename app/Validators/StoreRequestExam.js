@@ -2,7 +2,7 @@
 const Validator = use('Validator')
 const existCustomRule = use('App/Validators/Customs/Exists')
 Validator.extend('exists', existCustomRule)
-class StoreDoctor {
+class StoreRequestExam {
   get name() {
     return 'Solicitação de Exame'
   }
@@ -22,10 +22,10 @@ class StoreDoctor {
       'status.required': 'O campo status é obrigatório.',
       'type_exam_id.required': 'O campo tipo de exame é obrigatório.',
       'type_exam_id.exists' :'Tipo de exame não encontrado.',
-      'medical_schedule_id.required': ' o campo evento médico não encontrado.',
+      'medical_schedule_id.required': 'O campo evento médico não encontrado.',
       'medical_schedule_id.exists': 'Evento médico não encontrado.'
     }
   }
 }
 
-module.exports = StoreDoctor
+module.exports = StoreRequestExam
