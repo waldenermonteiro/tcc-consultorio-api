@@ -12,8 +12,8 @@ class MedicalSchedule extends Model {
     static get dates() {
         return super.dates.concat(['deleted_at'])
     }
-    pacient() {
-        return this.belongsTo('App/Models/Pacient')
+    patient() {
+        return this.belongsTo('App/Models/Patient')
     }
     prescriptionMedicament() {
         return this.belongsTo('App/Models/PrescriptionMedicament')
