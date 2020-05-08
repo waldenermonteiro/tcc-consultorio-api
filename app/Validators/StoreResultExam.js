@@ -7,7 +7,7 @@ class StoreResultExam {
     return "Solicitação de Exame";
   }
   get inputs() {
-    return ["status", "request_exam_id", "medical_schedule_id"];
+    return ["result", "status", "request_exam_id"];
   }
   rules(doctorId) {
     doctorId = doctorId || 0;
