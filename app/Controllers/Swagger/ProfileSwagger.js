@@ -17,9 +17,10 @@
 *     parameters:
 *       - name: name
 *         description: Name
-*         in: query
+*         in: body
 *         required: true
-*         type: string
+*         schema:
+*           $ref: '#/definitions/NewProfile'
 *     responses:
 *       200:
 *         example:
