@@ -9,6 +9,9 @@
 *       - name: name
 *         in: query
 *         type: string
+*       - name: date_appointment
+*         in: query
+*         type: string
 *       - name: employee_id
 *         in: query
 *         type: integer
@@ -17,8 +20,6 @@
 *         in: query
 *         type: integer
 *         format: "int32"
-*         schema:
-*           $ref: '#/definitions/NewMedicalSchedule'
 *     responses:
 *       200:
 *         description: Send hello message

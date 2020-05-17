@@ -9,6 +9,10 @@ class MedicalScheduleFilter extends ModelFilter {
   employee(id) {
     return this.where("employee_id", +id);
   }
+  dateAppointment(date) {
+    return this.where("date_appointment", +date);
+    // return this.where("date_appointment", "LIKE", `${date}%`);
+  }
   patient(id) {
     return this.where("patient_id", +id);
   }

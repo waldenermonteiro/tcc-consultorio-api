@@ -8,7 +8,7 @@ class MedicalScheduleRepository extends BaseRepository {
     }
     async index({ request, response, params }) {
         try {
-            const items = await this.Model.query().filter(request.all()).with('patient').with('employee').fetch()
+            const items = await this.Model.query().filter(request.all()).with('patient').with('employee.specialitie').fetch()
             return response.ok({
                 status: 200,
                 data: items

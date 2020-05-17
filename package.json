@@ -37,5 +37,20 @@
   "devDependencies": {},
   "autoload": {
     "App": "./app"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "printWidth": 180,
+    "overrides": [
+      {
+        "files": [
+          "*.css",
+          "*.scss"
+        ],
+        "options": {
+          "tabWidth": 3
+        }
+      }
+    ]
   }
 }
