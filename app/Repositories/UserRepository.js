@@ -20,6 +20,13 @@ class UserRepository extends BaseRepository {
             return this.messagesValidation(validation, response)
         }
     }
+    async index({ request, response }) {
+        const items = await this.Model.query().with('profile').fetch()
+        return response.ok({
+            status: 200,
+            data: items
+        })
+    }
     async getUser(params) {
         try {
             const user = await this.Model.findBy({ email: params.request.body.email })
@@ -69,3 +76,4 @@ class UserRepository extends BaseRepository {
     }
 }
 module.exports = UserRepository
+    

@@ -10,7 +10,7 @@ class StoreUser {
     return ['email', 'password', 'profile_id']
   }
   get inputsUpdate() {
-    return ['email']
+    return ['email', 'password', 'profile_id']
   }
   get inputsLogin() {
     return ['email', 'password']
