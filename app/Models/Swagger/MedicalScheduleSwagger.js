@@ -25,4 +25,11 @@
 *        - status
 *        - patient_id
 *        - employee_id
+*    UpdateStatusMedicalSchedule:
+*      type: object
+*      properties:
+*        status:
+*          type: string
+*      required:
+*        - status
 */

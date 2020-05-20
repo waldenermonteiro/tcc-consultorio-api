@@ -76,6 +76,25 @@
 *     responses:
 *       200:
 *         description: Send hello message
+*   patch:
+*     tags:
+*       - Medical Schedule
+*     summary: Update Status Medical Schedule
+*     parameters:
+*       - name: id
+*         description: Id of Medical Schedule
+*         in: path
+*         required: true
+*         type: integer
+*         format: "int32"
+*       - name: Parameters
+*         description: parameters
+*         in: body
+*         schema:
+*           $ref: '#/definitions/UpdateStatusMedicalSchedule'
+*     responses:
+*       200:
+*         description: Send hello message
 *   delete:
 *     tags:
 *       - Medical Schedule

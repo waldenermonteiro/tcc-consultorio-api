@@ -7,7 +7,10 @@ class StoreDoctor {
     return 'Consulta médica'
   }
   get inputs() {
-    return ['name', 'date_appointment', 'status', 'patient_id', 'prescription_medicament_id', 'employee_id']
+    return ['name', 'date_appointment', 'status', 'prescription_medicament_id', 'employee_id', 'patient_id']
+  }
+  get inputsAlterStatus(){
+    return ['status']
   }
   rules(medicalScheduleId) {
     medicalScheduleId = medicalScheduleId || 0
@@ -15,7 +18,7 @@ class StoreDoctor {
       name: `required|unique:medical_schedules,name,id,${medicalScheduleId}`,
       date_appointment: `required`,
       status: 'required',
-      patient_id: 'required|exists:patients,id',
+      // patient_id: 'required|exists:patients,id',
       prescription_medicament_id: 'exists:prescription_medicaments,id',
       employee_id: 'required|exists:employees,id'
     }
@@ -26,8 +29,8 @@ class StoreDoctor {
       'name.unique': 'Já existe uma consulta médica com esse nome, por favor, escolha outro.',
       'date_appointment.required': 'O campo data da consulta é obrigatório.',
       'status.required': 'O campo status é obrigatório.',
-      'patient_id.required': 'O campo paciente é obrigatório.',
-      'patient_id.exists' :'Paciente não encontrado.',
+      // 'patient_id.required': 'O campo paciente é obrigatório.',
+      // 'patient_id.exists' :'Paciente não encontrado.',
       'prescription_medicament_id.exists': 'Prescrição médica não encontrada.',
       'employee_id.required': 'O campo médico é obrigatório.',
       'employee_id.exists': 'Médico não encontrado.',
