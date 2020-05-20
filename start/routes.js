@@ -14,6 +14,7 @@ Route.group('v1', function () {
     Route.resource('typeExams', 'TypeExamController').apiOnly()
     Route.resource('prescriptionMedicament', 'PrescriptionMedicamentController').apiOnly()
     Route.resource('medicalSchedules', 'MedicalScheduleController').apiOnly()
+    Route.patch('/medicalSchedules/alterStatus/:id', 'MedicalScheduleController.alterStatus')
     Route.resource('requestExams', 'RequestExamController').apiOnly()
     Route.resource('resultExams', 'ResultExamController').apiOnly()
     // Route.get('excludes/employees', 'EmployeeController.indexOnlyTrashed')
