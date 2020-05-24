@@ -2,6 +2,8 @@
 * @swagger
 * /api/v1/requestExams:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Request Exam
 *     summary: List Request Exam
@@ -18,6 +20,8 @@
 *           title: Hello Guess
 *           text: Text
 *   post:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Request Exam
 *     summary: Create Request Exam
@@ -35,6 +39,8 @@
 *           text: Text
 * /api/v1/requestExams/{id}:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Request Exam
 *     summary: Get Request Exam by id
@@ -49,6 +55,8 @@
 *       200:
 *         description: Send hello message
 *   put:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Request Exam
 *     summary: Update Request Exam
@@ -68,6 +76,8 @@
 *       200:
 *         description: Send hello message
 *   delete:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Request Exam
 *     summary: Delete Request Exam by id

@@ -3,6 +3,8 @@
 * @swagger
 * /api/v1/patients:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Patient
 *     summary: List Patients
@@ -11,6 +13,8 @@
 *         example:
 *           message: Hello Guess
 *   post:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Patient
 *     summary: Create Patient
@@ -26,6 +30,8 @@
 *           message: Hello Guess
 * /api/v1/Patients/{id}:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Patient
 *     summary: Get Patient by id
@@ -40,6 +46,8 @@
 *       200:
 *         description: Send hello message
 *   put:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Patient
 *     summary: Update Patient
@@ -59,6 +67,8 @@
 *       200:
 *         description: Send hello message
 *   delete:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Patient
 *     summary: Delete Patient by id

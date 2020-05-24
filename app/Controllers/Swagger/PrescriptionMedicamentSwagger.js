@@ -3,6 +3,8 @@
 * @swagger
 * /api/v1/prescriptionMedicament:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Prescription Medicament
 *     summary: List Prescription Medicaments
@@ -11,6 +13,8 @@
 *         example:
 *           message: Hello Guess
 *   post:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Prescription Medicament
 *     summary: Create Prescription Medicament
@@ -27,6 +31,8 @@
 *           message: Hello Guess
 * /api/v1/prescriptionMedicament/{id}:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Prescription Medicament
 *     summary: Get Prescription Medicament by id
@@ -41,6 +47,8 @@
 *       200:
 *         description: Send hello message
 *   put:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Prescription Medicament
 *     summary: Update Prescription Medicament
@@ -60,6 +68,8 @@
 *       200:
 *         description: Send hello message
 *   delete:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Prescription Medicament
 *     summary: Delete Prescription Medicament by id

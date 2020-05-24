@@ -2,6 +2,8 @@
 * @swagger
 * /api/v1/employees:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Employee
 *     summary: List Employee
@@ -17,6 +19,8 @@
 *           title: Hello Guess
 *           text: Text
 *   post:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Employee
 *     summary: Create Employee
@@ -34,6 +38,8 @@
 *           text: Text
 * /api/v1/employees/{id}:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Employee
 *     summary: Get Employee by id
@@ -48,6 +54,8 @@
 *       200:
 *         description: Send hello message
 *   put:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Employee
 *     summary: Update Employee
@@ -67,6 +75,8 @@
 *       200:
 *         description: Send hello message
 *   delete:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Employee
 *     summary: Delete Employee by id

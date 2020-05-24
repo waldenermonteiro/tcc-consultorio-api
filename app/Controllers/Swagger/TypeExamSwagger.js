@@ -2,6 +2,8 @@
 * @swagger
 * /api/v1/typeExams:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Type Exam
 *     summary: List Type Exam
@@ -18,6 +20,8 @@
 *           title: Hello Guess
 *           text: Text
 *   post:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Type Exam
 *     summary: Create Type Exam
@@ -35,6 +39,8 @@
 *           text: Text
 * /api/v1/typeExams/{id}:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Type Exam
 *     summary: Get Type Exam by id
@@ -49,6 +55,8 @@
 *       200:
 *         description: Send hello message
 *   put:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Type Exam
 *     summary: Update Type Exam
@@ -68,6 +76,8 @@
 *       200:
 *         description: Send hello message
 *   delete:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Type Exam
 *     summary: Delete Type Exam by id

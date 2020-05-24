@@ -2,6 +2,8 @@
  * @swagger
  * /api/v1/users/login:
  *   post:
+ *     security:
+ *       - Bearer: []
  *     tags:
  *       - User
  *     summary: Login User
@@ -17,6 +19,8 @@
  *           message: Hello Guess
  * /api/v1/users:
  *   get:
+ *     security:
+ *       - Bearer: []
  *     tags:
  *       - User
  *     summary: List User
@@ -25,6 +29,8 @@
  *         example:
  *           message: Hello Guess
  *   post:
+ *     security:
+ *       - Bearer: []
  *     tags:
  *       - User
  *     summary: Create User

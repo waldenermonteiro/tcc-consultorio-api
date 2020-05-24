@@ -2,6 +2,8 @@
 * @swagger
 * /api/v1/specialities:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Specialitie
 *     summary: List Specialitie
@@ -18,6 +20,8 @@
 *           title: Hello Guess
 *           text: Text
 *   post:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Specialitie
 *     summary: Create Specialitie
@@ -35,6 +39,8 @@
 *           text: Text
 * /api/v1/specialities/{id}:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Specialitie
 *     summary: Get Specialitie by id
@@ -49,6 +55,8 @@
 *       200:
 *         description: Send hello message
 *   put:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Specialitie
 *     summary: Update Specialitie
@@ -68,6 +76,8 @@
 *       200:
 *         description: Send hello message
 *   delete:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Specialitie
 *     summary: Delete Specialitie by id

@@ -2,6 +2,8 @@
 * @swagger
 * /api/v1/medicaments:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Medicament
 *     summary: List Medicament
@@ -18,6 +20,8 @@
 *           title: Hello Guess
 *           text: Text
 *   post:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Medicament
 *     summary: Create Medicament
@@ -35,6 +39,8 @@
 *           text: Text
 * /api/v1/medicaments/{id}:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Medicament
 *     summary: Get Medicament by id
@@ -49,6 +55,8 @@
 *       200:
 *         description: Send hello message
 *   put:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Medicament
 *     summary: Update Medicament
@@ -68,6 +76,8 @@
 *       200:
 *         description: Send hello message
 *   delete:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Medicament
 *     summary: Delete Medicament by id

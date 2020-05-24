@@ -2,6 +2,8 @@
 * @swagger
 * /api/v1/resultExams:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Result Exam
 *     summary: List Result Exam
@@ -18,6 +20,8 @@
 *           title: Hello Guess
 *           text: Text
 *   post:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Result Exam
 *     summary: Create Result Exam
@@ -35,6 +39,8 @@
 *           text: Text
 * /api/v1/resultExams/{id}:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Result Exam
 *     summary: Get Result Exam by id
@@ -49,6 +55,8 @@
 *       200:
 *         description: Send hello message
 *   put:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Result Exam
 *     summary: Update Result Exam
@@ -68,6 +76,8 @@
 *       200:
 *         description: Send hello message
 *   delete:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Result Exam
 *     summary: Delete Result Exam by id

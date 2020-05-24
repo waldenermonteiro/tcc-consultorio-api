@@ -29,6 +29,8 @@
 *           title: Hello Guess
 *           text: Text
 *   post:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Medical Schedule
 *     summary: Create Medical Schedule
@@ -46,6 +48,8 @@
 *           text: Text
 * /api/v1/medicalSchedules/{id}:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Medical Schedule
 *     summary: Get Medical Schedule by id
@@ -60,6 +64,8 @@
 *       200:
 *         description: Send hello message
 *   put:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Medical Schedule
 *     summary: Update Medical Schedule
@@ -79,6 +85,8 @@
 *       200:
 *         description: Send hello message
 *   patch:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Medical Schedule
 *     summary: Update Status Medical Schedule
@@ -98,6 +106,8 @@
 *       200:
 *         description: Send hello message
 *   delete:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Medical Schedule
 *     summary: Delete Medical Schedule by id
