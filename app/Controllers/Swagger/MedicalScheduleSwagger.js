@@ -2,6 +2,8 @@
 * @swagger
 * /api/v1/medicalSchedules:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Medical Schedule
 *     summary: List Medical Schedule
