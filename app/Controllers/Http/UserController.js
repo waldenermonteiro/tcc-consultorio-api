@@ -25,6 +25,9 @@ class UserController extends BaseController {
   async store({ auth, request, response }) {
     return await this.UserRepository.store({ auth, request, response });
   }
+  async alterPassword({ request, response, params }) {
+    return await this.UserRepository.alterPassword({ request, response, params });
+  }
 }
 
 module.exports = UserController;

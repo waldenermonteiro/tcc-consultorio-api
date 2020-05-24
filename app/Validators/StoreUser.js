@@ -15,6 +15,9 @@ class StoreUser {
   get inputsLogin() {
     return ['email', 'password']
   }
+  get inputsAlterPassword() {
+    return ['password']
+  }
   rules(userId) {
     userId = userId || 0
     return {
@@ -32,6 +35,11 @@ class StoreUser {
   get rulesLogin() {
     return {
       email: `required`,
+      password: 'required'
+    }
+  }
+  get rulesAlterPassword() {
+    return {
       password: 'required'
     }
   }

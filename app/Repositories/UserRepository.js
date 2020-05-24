@@ -82,5 +82,24 @@ class UserRepository extends BaseRepository {
       return this.messagesValidation(validation, response);
     }
   }
+  async alterPassword({ request, response, params }) {
+    const data = request.only(this.Validator.inputsAlterPassword);
+    const validation = await validateAll(data, this.Validator.rulesAlterPassword, this.Validator.messages);
+    try {
+      console.log(params);
+      const item = await this.Model.findByOrFail("id", params.id);
+      const dataDefinitived = { ...item.$attributes, password: data.password };
+      await item.merge(dataDefinitived);
+      await item.save();
+      return response.ok({
+        status: 200,
+        data: item,
+        message: `Senha atualizada com sucesso`,
+      });
+    } catch (error) {
+      console.log(error);
+      return this.messagesValidation(validation, response);
+    }
+  }
 }
 module.exports = UserRepository;

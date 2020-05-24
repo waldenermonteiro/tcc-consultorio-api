@@ -18,9 +18,10 @@ Route.group('v1', function () {
     Route.resource('requestExams', 'RequestExamController').apiOnly().middleware(['auth'])
     Route.resource('resultExams', 'ResultExamController').apiOnly().middleware(['auth'])
     // Route.get('excludes/employees', 'EmployeeController.indexOnlyTrashed')
+    Route.resource('users', 'UserController').apiOnly()
     Route.get('/secure', 'UserController.index').middleware('auth')
     Route.post('users/login', 'UserController.login')
-    Route.resource('users', 'UserController').apiOnly()
+    Route.patch('/users/alterPassword/:id', 'UserController.alterPassword')
 }).prefix('api/v1')
 Route.get('/auth/:id', 'UserController.auth')
 
