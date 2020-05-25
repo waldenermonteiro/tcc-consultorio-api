@@ -3,6 +3,8 @@
 * @swagger
 * /api/v1/profiles:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Profile
 *     summary: List Profiles
@@ -11,21 +13,26 @@
 *         example:
 *           message: Hello Guess
 *   post:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Profile
 *     summary: Create Profile
 *     parameters:
 *       - name: name
 *         description: Name
-*         in: query
+*         in: body
 *         required: true
-*         type: string
+*         schema:
+*           $ref: '#/definitions/NewProfile'
 *     responses:
 *       200:
 *         example:
 *           message: Hello Guess
 * /api/v1/profiles/{id}:
 *   get:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Profile
 *     summary: Get Profile by id
@@ -40,6 +47,8 @@
 *       200:
 *         description: Send hello message
 *   put:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Profile
 *     summary: Update Profile
@@ -59,6 +68,8 @@
 *       200:
 *         description: Send hello message
 *   delete:
+*     security:
+*       - Bearer: []
 *     tags:
 *       - Profile
 *     summary: Delete Profile by id

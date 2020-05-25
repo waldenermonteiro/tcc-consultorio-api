@@ -3,7 +3,7 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 
-class Doctor extends Model {
+class ResultExam extends Model {
     static boot() {
         super.boot()
 
@@ -12,13 +12,10 @@ class Doctor extends Model {
     static get dates() {
         return super.dates.concat(['deleted_at'])
     }
-    specialitie() {
-        return this.belongsTo('App/Models/Specialitie')
-    }
-    user() {
-        return this.belongsTo('App/Models/User')
+    requestExam() {
+        return this.belongsTo('App/Models/RequestExam')
     }
 
 }
 
-module.exports = Doctor
+module.exports = ResultExam

@@ -30,4 +30,12 @@
 *       password:
 *         type: string
 *         format: password
+*   AlterPassword:
+*     type: object
+*     required:
+*       - password
+*     properties:
+*       password:
+*         type: string
+*         format: password
 */

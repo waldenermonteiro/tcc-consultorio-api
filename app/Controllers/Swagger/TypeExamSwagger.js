@@ -1,43 +1,52 @@
-
 /**
 * @swagger
-* /api/v1/patients:
+* /api/v1/typeExams:
 *   get:
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: List Patients
+*       - Type Exam
+*     summary: List Type Exam
+*     parameters:
+*       - name: title
+*         description: Title of the Type Exams
+*         in: query
+*         required: false
+*         type: string
 *     responses:
 *       200:
+*         description: Send hello message
 *         example:
-*           message: Hello Guess
+*           title: Hello Guess
+*           text: Text
 *   post:
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Create Patient
+*       - Type Exam
+*     summary: Create Type Exam
 *     parameters:
 *       - name: parameters
 *         in: body
 *         type: string
 *         schema:
-*           $ref: '#/definitions/NewPatient'
+*           $ref: '#/definitions/NewTypeExam'
 *     responses:
 *       200:
+*         description: Send hello message
 *         example:
-*           message: Hello Guess
-* /api/v1/Patients/{id}:
+*           title: Hello Guess
+*           text: Text
+* /api/v1/typeExams/{id}:
 *   get:
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Get Patient by id
+*       - Type Exam
+*     summary: Get Type Exam by id
 *     parameters:
 *       - name: id
-*         description: Id of Patient
+*         description: Id of Type Exam
 *         in: path
 *         required: true
 *         type: integer
@@ -49,11 +58,11 @@
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Update Patient
+*       - Type Exam
+*     summary: Update Type Exam
 *     parameters:
 *       - name: id
-*         description: Id of Patient
+*         description: Id of Type Exam
 *         in: path
 *         required: true
 *         type: integer
@@ -62,7 +71,7 @@
 *         description: parameters
 *         in: body
 *         schema:
-*           $ref: '#/definitions/NewPatient'
+*           $ref: '#/definitions/NewTypeExam'
 *     responses:
 *       200:
 *         description: Send hello message
@@ -70,11 +79,11 @@
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Delete Patient by id
+*       - Type Exam
+*     summary: Delete Type Exam by id
 *     parameters:
 *       - name: id
-*         description: Id of Patient
+*         description: Id of Type Exam
 *         in: path
 *         required: true
 *         type: integer

@@ -1,43 +1,52 @@
-
 /**
 * @swagger
-* /api/v1/patients:
+* /api/v1/resultExams:
 *   get:
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: List Patients
+*       - Result Exam
+*     summary: List Result Exam
+*     parameters:
+*       - name: title
+*         description: Title of the Result Exams
+*         in: query
+*         required: false
+*         type: string
 *     responses:
 *       200:
+*         description: Send hello message
 *         example:
-*           message: Hello Guess
+*           title: Hello Guess
+*           text: Text
 *   post:
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Create Patient
+*       - Result Exam
+*     summary: Create Result Exam
 *     parameters:
 *       - name: parameters
 *         in: body
 *         type: string
 *         schema:
-*           $ref: '#/definitions/NewPatient'
+*           $ref: '#/definitions/NewResultExam'
 *     responses:
 *       200:
+*         description: Send hello message
 *         example:
-*           message: Hello Guess
-* /api/v1/Patients/{id}:
+*           title: Hello Guess
+*           text: Text
+* /api/v1/resultExams/{id}:
 *   get:
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Get Patient by id
+*       - Result Exam
+*     summary: Get Result Exam by id
 *     parameters:
 *       - name: id
-*         description: Id of Patient
+*         description: Id of Result Exam
 *         in: path
 *         required: true
 *         type: integer
@@ -49,11 +58,11 @@
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Update Patient
+*       - Result Exam
+*     summary: Update Result Exam
 *     parameters:
 *       - name: id
-*         description: Id of Patient
+*         description: Id of Result Exam
 *         in: path
 *         required: true
 *         type: integer
@@ -62,7 +71,7 @@
 *         description: parameters
 *         in: body
 *         schema:
-*           $ref: '#/definitions/NewPatient'
+*           $ref: '#/definitions/NewResultExam'
 *     responses:
 *       200:
 *         description: Send hello message
@@ -70,11 +79,11 @@
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Delete Patient by id
+*       - Result Exam
+*     summary: Delete Result Exam by id
 *     parameters:
 *       - name: id
-*         description: Id of Patient
+*         description: Id of Result Exam
 *         in: path
 *         required: true
 *         type: integer

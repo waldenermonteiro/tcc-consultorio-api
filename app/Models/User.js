@@ -24,6 +24,9 @@ class User extends Model {
   static get dates () {
     return super.dates.concat(['deleted_at'])
   }
+  static get hidden () {
+    return ['password']
+  }
 
   /**
    * A relationship on tokens is required for auth to
@@ -39,7 +42,7 @@ class User extends Model {
     return this.hasMany('App/Models/Token')
   }
   profile () {
-    return this.hasOne('App/Models/Profile')
+    return this.belongsTo('App/Models/Profile')
   }
 }
 

@@ -1,14 +1,24 @@
 /**
 * @swagger
-* /api/v1/employees:
+* /api/v1/medicalSchedules:
 *   get:
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Employee
-*     summary: List Employee
+*       - Medical Schedule
+*     summary: List Medical Schedule
 *     parameters:
-*       - name: specialitie_id
+*       - name: name
+*         in: query
+*         type: string
+*       - name: date_appointment
+*         in: query
+*         type: string
+*       - name: employee_id
+*         in: query
+*         type: integer
+*         format: "int32"
+*       - name: patient_id
 *         in: query
 *         type: integer
 *         format: "int32"
@@ -22,30 +32,30 @@
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Employee
-*     summary: Create Employee
+*       - Medical Schedule
+*     summary: Create Medical Schedule
 *     parameters:
 *       - name: parameters
 *         in: body
 *         type: string
 *         schema:
-*           $ref: '#/definitions/NewEmployee'
+*           $ref: '#/definitions/NewMedicalSchedule'
 *     responses:
 *       200:
 *         description: Send hello message
 *         example:
 *           title: Hello Guess
 *           text: Text
-* /api/v1/employees/{id}:
+* /api/v1/medicalSchedules/{id}:
 *   get:
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Employee
-*     summary: Get Employee by id
+*       - Medical Schedule
+*     summary: Get Medical Schedule by id
 *     parameters:
 *       - name: id
-*         description: Id of Employee
+*         description: Id of Medical Schedule
 *         in: path
 *         required: true
 *         type: integer
@@ -57,11 +67,11 @@
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Employee
-*     summary: Update Employee
+*       - Medical Schedule
+*     summary: Update Medical Schedule
 *     parameters:
 *       - name: id
-*         description: Id of Employee
+*         description: Id of Medical Schedule
 *         in: path
 *         required: true
 *         type: integer
@@ -70,7 +80,28 @@
 *         description: parameters
 *         in: body
 *         schema:
-*           $ref: '#/definitions/NewEmployee'
+*           $ref: '#/definitions/NewMedicalSchedule'
+*     responses:
+*       200:
+*         description: Send hello message
+*   patch:
+*     security:
+*       - Bearer: []
+*     tags:
+*       - Medical Schedule
+*     summary: Update Status Medical Schedule
+*     parameters:
+*       - name: id
+*         description: Id of Medical Schedule
+*         in: path
+*         required: true
+*         type: integer
+*         format: "int32"
+*       - name: Parameters
+*         description: parameters
+*         in: body
+*         schema:
+*           $ref: '#/definitions/UpdateStatusMedicalSchedule'
 *     responses:
 *       200:
 *         description: Send hello message
@@ -78,11 +109,11 @@
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Employee
-*     summary: Delete Employee by id
+*       - Medical Schedule
+*     summary: Delete Medical Schedule by id
 *     parameters:
 *       - name: id
-*         description: Id of Employee
+*         description: Id of Medical Schedule
 *         in: path
 *         required: true
 *         type: integer

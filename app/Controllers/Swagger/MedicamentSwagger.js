@@ -1,43 +1,52 @@
-
 /**
 * @swagger
-* /api/v1/patients:
+* /api/v1/medicaments:
 *   get:
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: List Patients
+*       - Medicament
+*     summary: List Medicament
+*     parameters:
+*       - name: title
+*         description: Title of the Medicaments
+*         in: query
+*         required: false
+*         type: string
 *     responses:
 *       200:
+*         description: Send hello message
 *         example:
-*           message: Hello Guess
+*           title: Hello Guess
+*           text: Text
 *   post:
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Create Patient
+*       - Medicament
+*     summary: Create Medicament
 *     parameters:
 *       - name: parameters
 *         in: body
 *         type: string
 *         schema:
-*           $ref: '#/definitions/NewPatient'
+*           $ref: '#/definitions/NewMedicament'
 *     responses:
 *       200:
+*         description: Send hello message
 *         example:
-*           message: Hello Guess
-* /api/v1/Patients/{id}:
+*           title: Hello Guess
+*           text: Text
+* /api/v1/medicaments/{id}:
 *   get:
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Get Patient by id
+*       - Medicament
+*     summary: Get Medicament by id
 *     parameters:
 *       - name: id
-*         description: Id of Patient
+*         description: Id of Medicament
 *         in: path
 *         required: true
 *         type: integer
@@ -49,11 +58,11 @@
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Update Patient
+*       - Medicament
+*     summary: Update Medicament
 *     parameters:
 *       - name: id
-*         description: Id of Patient
+*         description: Id of Medicament
 *         in: path
 *         required: true
 *         type: integer
@@ -62,7 +71,7 @@
 *         description: parameters
 *         in: body
 *         schema:
-*           $ref: '#/definitions/NewPatient'
+*           $ref: '#/definitions/NewMedicament'
 *     responses:
 *       200:
 *         description: Send hello message
@@ -70,11 +79,11 @@
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Delete Patient by id
+*       - Medicament
+*     summary: Delete Medicament by id
 *     parameters:
 *       - name: id
-*         description: Id of Patient
+*         description: Id of Medicament
 *         in: path
 *         required: true
 *         type: integer

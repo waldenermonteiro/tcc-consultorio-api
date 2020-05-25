@@ -1,43 +1,52 @@
-
 /**
 * @swagger
-* /api/v1/patients:
+* /api/v1/specialities:
 *   get:
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: List Patients
+*       - Specialitie
+*     summary: List Specialitie
+*     parameters:
+*       - name: title
+*         description: Title of the Specialities
+*         in: query
+*         required: false
+*         type: string
 *     responses:
 *       200:
+*         description: Send hello message
 *         example:
-*           message: Hello Guess
+*           title: Hello Guess
+*           text: Text
 *   post:
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Create Patient
+*       - Specialitie
+*     summary: Create Specialitie
 *     parameters:
 *       - name: parameters
 *         in: body
 *         type: string
 *         schema:
-*           $ref: '#/definitions/NewPatient'
+*           $ref: '#/definitions/NewSpecialitie'
 *     responses:
 *       200:
+*         description: Send hello message
 *         example:
-*           message: Hello Guess
-* /api/v1/Patients/{id}:
+*           title: Hello Guess
+*           text: Text
+* /api/v1/specialities/{id}:
 *   get:
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Get Patient by id
+*       - Specialitie
+*     summary: Get Specialitie by id
 *     parameters:
 *       - name: id
-*         description: Id of Patient
+*         description: Id of Specialitie
 *         in: path
 *         required: true
 *         type: integer
@@ -49,11 +58,11 @@
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Update Patient
+*       - Specialitie
+*     summary: Update Specialitie
 *     parameters:
 *       - name: id
-*         description: Id of Patient
+*         description: Id of Specialitie
 *         in: path
 *         required: true
 *         type: integer
@@ -62,7 +71,7 @@
 *         description: parameters
 *         in: body
 *         schema:
-*           $ref: '#/definitions/NewPatient'
+*           $ref: '#/definitions/NewSpecialitie'
 *     responses:
 *       200:
 *         description: Send hello message
@@ -70,11 +79,11 @@
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Delete Patient by id
+*       - Specialitie
+*     summary: Delete Specialitie by id
 *     parameters:
 *       - name: id
-*         description: Id of Patient
+*         description: Id of Specialitie
 *         in: path
 *         required: true
 *         type: integer

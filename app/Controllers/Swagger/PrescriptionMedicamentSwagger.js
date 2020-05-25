@@ -1,13 +1,13 @@
 
 /**
 * @swagger
-* /api/v1/patients:
+* /api/v1/prescriptionMedicament:
 *   get:
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: List Patients
+*       - Prescription Medicament
+*     summary: List Prescription Medicaments
 *     responses:
 *       200:
 *         example:
@@ -16,28 +16,29 @@
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Create Patient
+*       - Prescription Medicament
+*     summary: Create Prescription Medicament
 *     parameters:
-*       - name: parameters
+*       - name: prescription
+*         description: Prescription
 *         in: body
-*         type: string
+*         required: true
 *         schema:
-*           $ref: '#/definitions/NewPatient'
+*           $ref: '#/definitions/NewPrescriptionMedicament'
 *     responses:
 *       200:
 *         example:
 *           message: Hello Guess
-* /api/v1/Patients/{id}:
+* /api/v1/prescriptionMedicament/{id}:
 *   get:
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Get Patient by id
+*       - Prescription Medicament
+*     summary: Get Prescription Medicament by id
 *     parameters:
 *       - name: id
-*         description: Id of Patient
+*         description: Id of Prescription Medicament
 *         in: path
 *         required: true
 *         type: integer
@@ -49,11 +50,11 @@
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Update Patient
+*       - Prescription Medicament
+*     summary: Update Prescription Medicament
 *     parameters:
 *       - name: id
-*         description: Id of Patient
+*         description: Id of Prescription Medicament
 *         in: path
 *         required: true
 *         type: integer
@@ -62,7 +63,7 @@
 *         description: parameters
 *         in: body
 *         schema:
-*           $ref: '#/definitions/NewPatient'
+*           $ref: '#/definitions/NewPrescriptionMedicament'
 *     responses:
 *       200:
 *         description: Send hello message
@@ -70,11 +71,11 @@
 *     security:
 *       - Bearer: []
 *     tags:
-*       - Patient
-*     summary: Delete Patient by id
+*       - Prescription Medicament
+*     summary: Delete Prescription Medicament by id
 *     parameters:
 *       - name: id
-*         description: Id of Patient
+*         description: Id of Prescription Medicament
 *         in: path
 *         required: true
 *         type: integer

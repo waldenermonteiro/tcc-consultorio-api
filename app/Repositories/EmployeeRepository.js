@@ -11,7 +11,7 @@ class EmployeeRepository extends BaseRepository {
         this.UserValidator = new UserValidator()
     }
     async index({ request, response }) {
-        const items = await this.Model.query().with('user').fetch()
+        const items = await this.Model.query().filter(request.all()).with('user.profile').with('specialitie').fetch()
         return response.ok({
             status: 200,
             data: items

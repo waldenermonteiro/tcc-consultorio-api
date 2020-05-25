@@ -31,6 +31,7 @@ class PatientRepository extends BaseRepository {
             await trx.commit()
             return response.ok({
                 status: 200,
+                data: patient,
                 message: `Paciente ${patient.name} cadastrado(a) com sucesso`
             })
         } catch (error) {
