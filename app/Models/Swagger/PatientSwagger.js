@@ -8,6 +8,9 @@
 *       - birth_date
 *       - rg
 *       - cpf
+*       - cep
+*       - district
+*       - complement
 *       - address
 *       - city
 *       - state
@@ -24,6 +27,12 @@
 *       rg:
 *         type: string
 *       cpf:
+*         type: string
+*       cep:
+*         type: string
+*       district:
+*         type: string
+*       complement:
 *         type: string
 *       address:
 *         type: string
