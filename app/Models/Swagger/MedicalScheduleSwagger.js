@@ -8,6 +8,8 @@
 *          type: string
 *        date_appointment:
 *          type: string
+*        observation:
+*          type: string
 *        status:
 *          type: string
 *        patient_id:

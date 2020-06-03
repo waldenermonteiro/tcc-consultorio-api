@@ -4,6 +4,8 @@
  *    NewRequestExam:
  *      type: object
  *      properties:
+ *        observation:
+ *          type: string
  *        status:
  *          type: string
  *        type_exam_id:
