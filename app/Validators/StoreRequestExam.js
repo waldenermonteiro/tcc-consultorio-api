@@ -9,8 +9,10 @@ class StoreRequestExam {
   get inputs() {
     return ["observation", "status", "type_exam_id", "medical_schedule_id"];
   }
-  rules(doctorId) {
-    doctorId = doctorId || 0;
+  get inputsFinishConsult() {
+    return ["requestExam"];
+  }
+  rules() {
     return {
       observation: `max:500`,
       status: "required",
