@@ -34,6 +34,7 @@ class BaseRepository {
         const data = request.only(this.Validator.inputs)
         const validation = await validateAll(data, this.Validator.rules(), this.Validator.messages)
         try {
+            if(validation.fails()) throw Error()
             const item = await this.Model.create(data)
             return response.ok({
                 status: 200,
@@ -48,6 +49,7 @@ class BaseRepository {
         const data = request.only(this.Validator.inputs)
         const validation = await validateAll(data, this.Validator.rules(params.id), this.Validator.messages)
         try {
+            if(validation.fails()) throw Error()
             const item = await this.Model.findByOrFail('id', params.id)
             await item.merge(data)
             await item.save()
