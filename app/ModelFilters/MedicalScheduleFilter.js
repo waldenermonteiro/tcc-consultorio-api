@@ -17,6 +17,9 @@ class MedicalScheduleFilter extends ModelFilter {
   patient(id) {
     return this.where("patient_id", +id);
   }
+  status(status) {
+    return this.where("status", status);
+  }
 }
 
 module.exports = MedicalScheduleFilter;
