@@ -29,8 +29,7 @@ class StoreDoctor {
   rulesFinishConsult() {
     return {
       observation: `max:500`,
-      prescription_medicaments: `max:2000`,
-      // status: "required",
+      prescription_medicaments: `max:2000`
     };
   }
   get messages() {

@@ -12,7 +12,7 @@ class MedicalScheduleRepository extends BaseRepository {
   }
   async index({ request, response, params }) {
     try {
-      const items = await this.Model.query().filter(request.all()).with("patient").with("employee.specialitie").orderBy('date_appointment', 'desc').fetch();
+      const items = await this.Model.query().filter(request.all()).with("patient").with("employee.specialitie").orderBy("date_appointment", "desc").fetch();
       return response.ok({
         status: 200,
         data: items,
@@ -42,26 +42,26 @@ class MedicalScheduleRepository extends BaseRepository {
     const data = request.only(this.Validator.inputsFinishConsult);
     const dataRequestExam = request.only(this.RequestExamValidator.inputsFinishConsult);
     const validation = await validateAll(data.medicalSchedule, this.Validator.rulesFinishConsult(), this.Validator.messages);
-    const validationRequestExam = await validateAll(dataRequestExam.requestExam, this.RequestExamValidator.rules(), this.RequestExamValidator.messages);
     const trx = await Database.beginTransaction();
     try {
       const medicalSchedule = await this.Model.findByOrFail("id", params.id);
       await medicalSchedule.merge({ ...data.medicalSchedule, prescription_medicaments: JSON.stringify(data.medicalSchedule.prescription_medicaments), status: "Finalizada" }, trx);
-      await medicalSchedule.save();
       if (dataRequestExam.requestExam) {
         for (const rexam of dataRequestExam.requestExam) {
           const requestExam = await this.RequestExam.create({ ...rexam, medical_schedule_id: params.id, status: "Agendado" }, trx);
           requestExam.save();
         }
       }
+      await medicalSchedule.save();
       await trx.commit();
       return response.ok({
         status: 200,
         message: `Consulta finalizada com sucesso`,
       });
     } catch (error) {
+      console.log(error)
       await trx.rollback();
-      return dataRequestExam.requestExam ? this.messagesValidations([validationRequestExam, validation], response) : this.messagesValidations(validation, response);
+      return this.messagesValidation(validation, response);
     }
   }
 }
