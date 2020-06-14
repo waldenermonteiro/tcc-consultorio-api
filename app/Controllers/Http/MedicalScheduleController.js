@@ -13,6 +13,9 @@ class MedicalScheduleController extends BaseController {
   async index({ request, response, params }) {
     return await this.MedicalScheduleRepository.index({ request, response, params })
   }
+  async store({ request, response, params }) {
+    return await this.MedicalScheduleRepository.store({ request, response })
+  }
   async alterStatus({ request, response, params }) {
     return await this.MedicalScheduleRepository.alterStatus({ request, response, params })
   }

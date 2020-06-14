@@ -10,7 +10,7 @@ class MedicalScheduleRepository extends BaseRepository {
     this.Validator = new Validator();
     this.RequestExamValidator = new RequestExamValidator();
   }
-  async index({ request, response, params }) {
+  async index({ request, response }) {
     try {
       const items = await this.Model.query().filter(request.all()).with("patient").with("employee.specialitie").orderBy("date_appointment", "desc").fetch();
       return response.ok({
@@ -21,9 +21,24 @@ class MedicalScheduleRepository extends BaseRepository {
       return this.messageNotExistItem(response);
     }
   }
+  async store({ request, response }) {
+    const data = request.only(this.Validator.inputs);
+    const validation = await validateAll(data, this.Validator.rules(), this.Validator.messages);
+    try {
+      if (validation.fails()) throw Error();
+      const item = await this.Model.create({ ...data, status: "Agendada" });
+      return response.ok({
+        status: 200,
+        data: item,
+        message: `${this.Validator.name} ${item.name} cadastrado(a) com sucesso`,
+      });
+    } catch (error) {
+      return this.messagesValidation(validation, response);
+    }
+  }
   async alterStatus({ request, response, params }) {
     const data = request.only(this.Validator.inputsAlterStatus);
-    const validation = await validateAll(data, this.Validator.rules(params.id), this.Validator.messages);
+    const validation = await validateAll(data, this.Validator.rulesAlterStatus(), this.Validator.messages);
     try {
       const item = await this.Model.findByOrFail("id", params.id);
       const dataDefinitived = { ...item.$attributes, status: data.status };
@@ -59,7 +74,7 @@ class MedicalScheduleRepository extends BaseRepository {
         message: `Consulta finalizada com sucesso`,
       });
     } catch (error) {
-      console.log(error)
+      console.log(error);
       await trx.rollback();
       return this.messagesValidation(validation, response);
     }
