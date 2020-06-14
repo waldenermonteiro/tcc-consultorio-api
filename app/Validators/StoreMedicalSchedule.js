@@ -9,7 +9,7 @@ class StoreDoctor {
     return "Consulta médica";
   }
   get inputs() {
-    return ["name", "date_appointment", "observation", "prescription_medicaments", "status", "employee_id", "patient_id"];
+    return ["name", "date_appointment", "observation", "prescription_medicaments", "employee_id", "patient_id"];
   }
   get inputsAlterStatus() {
     return ["status"];
@@ -23,9 +23,13 @@ class StoreDoctor {
       name: `required|unique:medical_schedules,name,id,${medicalScheduleId}`,
       date_appointment: `required|whereIfEmpty:medical_schedules`,
       observation: `max:500`,
-      status: `required`,
-      // patient_id: 'required|exists:patients,id',
+      patient_id: 'required|exists:patients,id',
       employee_id: "required|exists:employees,id",
+    };
+  }
+  rulesAlterStatus() {
+    return {
+      status: "required",
     };
   }
   rulesFinishConsult() {
@@ -42,8 +46,8 @@ class StoreDoctor {
       "date_appointment.whereIfEmpty": "Já possui uma consulta neste dia e horário, por favor, escolha outro.",
       "observation.max": "O campo observação da consulta aceita até 500 caracteres, por favor, tente novamente.",
       "status.required": "O campo status é obrigatório.",
-      // 'patient_id.required': 'O campo paciente é obrigatório.',
-      // 'patient_id.exists' :'Paciente não encontrado.',
+      'patient_id.required': 'O campo paciente é obrigatório.',
+      'patient_id.exists' :'Paciente não encontrado.',
       "employee_id.required": "O campo médico é obrigatório.",
       "employee_id.exists": "Médico não encontrado.",
     };
