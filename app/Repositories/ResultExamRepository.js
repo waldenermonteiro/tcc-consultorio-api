@@ -11,15 +11,17 @@ class ResultExamRepository extends BaseRepository {
   }
   async index({ request, response }) {
     try {
-      const requestParams = request.all()
+      const requestParams = request.all();
       let items = await this.Model.query().filter(request.all()).with("requestExam").with("medicalSchedule").fetch();
-      items = items.toJSON().filter((item) => item.medicalSchedule.patient_id === parseInt(requestParams.patient_id))
+      if (requestParams.patient_id) {
+        items = items.toJSON().filter((item) => item.medicalSchedule.patient_id === parseInt(requestParams.patient_id));
+      }
       return response.ok({
         status: 200,
         data: items,
       });
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return this.messageNotExistItem(response);
     }
   }
@@ -35,7 +37,7 @@ class ResultExamRepository extends BaseRepository {
       const requestExamAlteredStatus = { ...requestExam.$attributes, status: "Finalizado" };
       await requestExam.merge(requestExamAlteredStatus, trx);
       await requestExam.save();
-      await trx.commit()
+      await trx.commit();
       return response.ok({
         status: 200,
         message: `${this.Validator.name} cadastrado(a) com sucesso`,
