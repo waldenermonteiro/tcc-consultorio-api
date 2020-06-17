@@ -13,9 +13,8 @@
  *        patient_id:
  *         type: integer
  *         format: "int32"
- *        prescription_medicament_id:
- *         type: integer
- *         format: "int32"
+ *        prescription_medicaments:
+ *         type: object
  *        employee_id:
  *         type: integer
  *         format: "int32"
