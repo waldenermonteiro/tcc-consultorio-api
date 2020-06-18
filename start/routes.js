@@ -17,6 +17,7 @@ Route.group('v1', function () {
     Route.patch('/medicalSchedules/alterStatus/:id', 'MedicalScheduleController.alterStatus').middleware(['auth'])
     Route.patch('/medicalSchedules/finishConsult/:id', 'MedicalScheduleController.finishConsult').middleware(['auth'])
     Route.resource('requestExams', 'RequestExamController').apiOnly().middleware(['auth'])
+    Route.patch('/requestExams/alterStatus/:id', 'RequestExamController.alterStatus').middleware(['auth'])
     Route.resource('resultExams', 'ResultExamController').apiOnly().middleware(['auth'])
     // Route.get('excludes/employees', 'EmployeeController.indexOnlyTrashed')
     Route.resource('users', 'UserController').apiOnly()

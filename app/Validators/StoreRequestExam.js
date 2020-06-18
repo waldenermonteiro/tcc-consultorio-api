@@ -9,8 +9,8 @@ class StoreRequestExam {
   get inputs() {
     return ["observation", "status", "type_exam_id"];
   }
-  get inputsFinishConsult() {
-    return ["requestExam"];
+  get inputsAlterStatus() {
+    return ["status"];
   }
   rules() {
     return {
