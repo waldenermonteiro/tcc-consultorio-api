@@ -19,6 +19,11 @@ class StoreRequestExam {
       type_exam_id: "required|exists:type_exams,id"
     };
   }
+  rulesAlterStatus() {
+    return {
+      status: "required",
+    };
+  }
   get messages() {
     return {
       "observation.max": "O campo observação da solicitação de exame aceita até 500 caracteres, por favor, tente novamente.",

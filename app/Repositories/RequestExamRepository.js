@@ -20,8 +20,9 @@ class RequestExamRepository extends BaseRepository {
   }
   async alterStatus({ request, response, params }) {
     const data = request.only(this.Validator.inputsAlterStatus);
-    const validation = await validateAll(data, this.Validator.rules(), this.Validator.messages);
+    const validation = await validateAll(data, this.Validator.rulesAlterStatus(), this.Validator.messages);
     try {
+      if (validation.fails()) throw Error();
       const item = await this.Model.findByOrFail("id", params.id);
       const dataDefinitived = { ...item.$attributes, status: data.status };
       await item.merge(dataDefinitived);
