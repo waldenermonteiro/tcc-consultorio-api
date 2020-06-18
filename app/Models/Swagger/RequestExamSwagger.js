@@ -18,4 +18,11 @@
  *        - status
  *        - type_exam_id
  *        - medical_schedule_id
+ *    UpdateStatusRequestExam:
+ *      type: object
+ *      properties:
+ *        status:
+ *          type: string
+ *      required:
+ *        - status
  */

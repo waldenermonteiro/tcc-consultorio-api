@@ -91,4 +91,26 @@
 *     responses:
 *       200:
 *         description: Send hello message
+* /api/v1/requestExams/alterStatus/{id}:
+*   patch:
+*     security:
+*       - Bearer: []
+*     tags:
+*       - Request Exam
+*     summary: Update Status Request Exam
+*     parameters:
+*       - name: id
+*         description: Id of Request Exam
+*         in: path
+*         required: true
+*         type: integer
+*         format: "int32"
+*       - name: Parameters
+*         description: parameters
+*         in: body
+*         schema:
+*           $ref: '#/definitions/UpdateStatusRequestExam'
+*     responses:
+*       200:
+*         description: Send hello message
 */
