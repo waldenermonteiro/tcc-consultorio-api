@@ -3,6 +3,9 @@
 const ModelFilter = use("ModelFilter");
 
 class MedicalScheduleFilter extends ModelFilter {
+  id(id) {
+    return this.where("id", +id);
+  }
   name(name) {
     return this.where("name", "LIKE", `%${name}%`);
   }
@@ -16,6 +19,9 @@ class MedicalScheduleFilter extends ModelFilter {
   }
   patient(id) {
     return this.where("patient_id", +id);
+  }
+  status(status) {
+    return this.where("status", status);
   }
 }
 

@@ -11,5 +11,8 @@ class RequestExamController extends BaseController {
   async index({ request, response, params }) {
     return await this.RequestExamRepository.index({ request, response, params })
   }
+  async alterStatus({ request, response, params }) {
+    return await this.RequestExamRepository.alterStatus({ request, response, params })
+  }
 }
 module.exports = RequestExamController

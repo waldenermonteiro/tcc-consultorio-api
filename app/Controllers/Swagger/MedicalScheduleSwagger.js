@@ -121,4 +121,26 @@
 *     responses:
 *       200:
 *         description: Send hello message
+* /api/v1/medicalSchedules/finishConsult/{id}:
+*   patch:
+*     security:
+*       - Bearer: []
+*     tags:
+*       - Medical Schedule
+*     summary: Finish Medical Schedule
+*     parameters:
+*       - name: id
+*         description: Id of Medical Schedule
+*         in: path
+*         required: true
+*         type: integer
+*         format: "int32"
+*       - name: Parameters
+*         description: parameters
+*         in: body
+*         schema:
+*           $ref: '#/definitions/FinishMedicalSchedule'
+*     responses:
+*       200:
+*         description: Send hello message
 */
