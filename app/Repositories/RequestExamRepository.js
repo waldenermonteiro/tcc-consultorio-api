@@ -9,7 +9,7 @@ class RequestExamRepository extends BaseRepository {
   }
   async index({ request, response, params }) {
     try {
-      const items = await this.Model.query().with("typeExam").with("medicalSchedule.patient").with("medicalSchedule.employee").fetch();
+      const items = await this.Model.query().orderBy('created_at','desc').filter(request.all()).with("typeExam").with("medicalSchedule.patient").with("medicalSchedule.employee").fetch();
       return response.ok({
         status: 200,
         data: items,
