@@ -12,9 +12,12 @@ class ResultExamRepository extends BaseRepository {
   async index({ request, response }) {
     try {
       const requestParams = request.all();
-      let items = await this.Model.query().filter(request.all()).with("requestExam").with("medicalSchedule").fetch();
+      let items = await this.Model.query().filter(request.all()).with("requestExam").with("medicalSchedule.employee").with("medicalSchedule.patient").fetch();
       if (requestParams.patient_id) {
         items = items.toJSON().filter((item) => item.medicalSchedule.patient_id === parseInt(requestParams.patient_id));
+      }
+      if (requestParams.employee_id) {
+        items = items.toJSON().filter((item) => item.medicalSchedule.employee_id === parseInt(requestParams.employee_id));
       }
       return response.ok({
         status: 200,
