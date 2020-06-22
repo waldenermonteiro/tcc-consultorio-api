@@ -11,7 +11,7 @@ class PatientRepository extends BaseRepository {
         this.UserValidator = new UserValidator()
     }
     async index({ request, response }) {
-        const items = await this.Model.query().with('user').fetch()
+        const items = await this.Model.query().filter(request.all()).with('user').fetch()
         return response.ok({
             status: 200,
             data: items

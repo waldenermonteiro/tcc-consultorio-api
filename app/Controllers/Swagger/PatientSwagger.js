@@ -8,6 +8,16 @@
 *     tags:
 *       - Patient
 *     summary: List Patients
+*     parameters:
+*       - name: name
+*         in: query
+*         type: string
+*       - name: rg
+*         in: query
+*         type: string
+*       - name: cpf
+*         in: query
+*         type: string
 *     responses:
 *       200:
 *         example:
