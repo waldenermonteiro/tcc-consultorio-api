@@ -22,7 +22,7 @@ class UserRepository extends BaseRepository {
     }
   }
   async index({ request, response }) {
-    const items = await this.Model.query().with("profile").fetch();
+    const items = await this.Model.query().filter(request.all()).with("profile").fetch();
     return response.ok({
       status: 200,
       data: items,

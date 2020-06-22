@@ -24,6 +24,14 @@
  *     tags:
  *       - User
  *     summary: List User
+ *     parameters:
+ *       - name: email
+ *         in: query
+ *         type: string
+ *       - name: profile_id
+ *         in: query
+ *         type: integer
+ *         format: "int32"
  *     responses:
  *       200:
  *         example:
@@ -121,4 +129,3 @@
  *       200:
  *         description: Send hello message
  */
-

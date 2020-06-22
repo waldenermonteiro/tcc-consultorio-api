@@ -5,11 +5,13 @@ const Hash = use('Hash')
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
+const UserFilter = use("App/ModelFilters/UserFilter");
 class User extends Model {
   static boot () {
     super.boot()
 
     this.addTrait('@provider:Lucid/SoftDeletes')
+    this.addTrait('@provider:Filterable', UserFilter)
 
     /**
      * A hook to hash the user password before saving
