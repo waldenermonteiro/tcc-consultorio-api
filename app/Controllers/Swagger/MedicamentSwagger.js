@@ -8,10 +8,14 @@
 *       - Medicament
 *     summary: List Medicament
 *     parameters:
-*       - name: title
-*         description: Title of the Medicaments
+*       - name: name
 *         in: query
-*         required: false
+*         type: string
+*       - name: factory
+*         in: query
+*         type: string
+*       - name: manufacturer
+*         in: query
 *         type: string
 *     responses:
 *       200:
