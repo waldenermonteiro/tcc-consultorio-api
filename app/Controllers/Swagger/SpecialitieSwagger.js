@@ -8,10 +8,8 @@
 *       - Specialitie
 *     summary: List Specialitie
 *     parameters:
-*       - name: title
-*         description: Title of the Specialities
+*       - name: name
 *         in: query
-*         required: false
 *         type: string
 *     responses:
 *       200:
