@@ -6,7 +6,7 @@ class BaseRepository {
         this.Validator = new Validator()
     }
     async index({ request, response }) {
-        const items = await this.Model.query().fetch()
+        const items = await this.Model.query().filter(request.all()).fetch()
         return response.ok({
             status: 200,
             data: items
