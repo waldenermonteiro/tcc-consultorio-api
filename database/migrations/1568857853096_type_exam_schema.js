@@ -9,6 +9,7 @@ class ExamTypesSchema extends Schema {
       table.increments()
       table.string('name', 30).notNullable().unique()
       table.timestamps()
+      table.timestamp('deleted_at')
     })
   }
 
