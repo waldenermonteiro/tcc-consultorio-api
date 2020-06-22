@@ -11,11 +11,20 @@ class EmployeeRepository extends BaseRepository {
         this.UserValidator = new UserValidator()
     }
     async index({ request, response }) {
-        const items = await this.Model.query().filter(request.all()).with('user.profile').with('specialitie').fetch()
-        return response.ok({
-            status: 200,
-            data: items
-        })
+        try {
+            const requestParams = request.all();
+            let items = await this.Model.query().filter(request.all()).with('user.profile').with('specialitie').fetch()
+            if (requestParams.profile_id) {
+                items = items.toJSON().filter((item) => item.user.profile_id === parseInt(requestParams.profile_id));
+              }
+            return response.ok({
+                status: 200,
+                data: items
+            })
+          } catch (error) {
+              console.log(error)
+            return this.messageNotExistItem(response);
+          }
     }
     async indexOnlyTrashed({ request, response }) {
         const items = await this.Model.query().withTrashed().with('user').fetch()
