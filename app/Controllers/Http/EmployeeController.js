@@ -19,5 +19,8 @@ class EmployeeController extends BaseController {
   async update({ request, response, params }) {
     return await this.EmployeeRepository.update({ request, response, params })
   }
+  async destroy({ request, response, params }) {
+    return await this.EmployeeRepository.destroy({ request, response, params })
+  }
 }
 module.exports = EmployeeController

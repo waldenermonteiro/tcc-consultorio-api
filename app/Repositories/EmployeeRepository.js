@@ -77,5 +77,24 @@ class EmployeeRepository extends BaseRepository {
             return this.messagesValidations([validation, validationUser], response)
         }
     }
+    async destroy({ request, response, params }) {
+        const trx = await Database.beginTransaction()
+        try {
+            const employee = await this.Model.findByOrFail('id', params.id)
+            await employee.delete(trx)
+            await employee.save()
+            const user = await this.User.findByOrFail('id', employee.user_id)
+            await user.delete(trx)
+            await user.save()
+            await trx.commit()
+            return response.ok({
+                status: 200,
+                message: `Funcionário(a) ${employee.name} excluído com sucesso`
+            })
+        } catch (error) {
+            await trx.rollback()
+            return "Não foi possível realizar a ação, por favor, tente mais tarde"
+        }
+    }
 }
 module.exports = EmployeeRepository
