@@ -24,6 +24,7 @@ class PatientRepository extends BaseRepository {
         const validationUser = await validateAll(dataUser, this.UserValidator.rules(), this.UserValidator.messages)
         const trx = await Database.beginTransaction()
         try {
+            if(validation.fails()) throw Error()
             const user = await this.User.create({...dataUser}, trx)
             user.save()
             const patient = await this.Model.create({...data, user_id: user.id }, trx)
@@ -60,6 +61,25 @@ class PatientRepository extends BaseRepository {
         } catch (error) {
             await trx.rollback()
             return this.messagesValidations([validationUser, validation], response)
+        }
+    }
+    async destroy({ request, response, params }) {
+        const trx = await Database.beginTransaction()
+        try {
+            const patient = await this.Model.findByOrFail('id', params.id)
+            await patient.delete(trx)
+            await patient.save()
+            const user = await this.User.findByOrFail('id', patient.user_id)
+            await user.delete(trx)
+            await user.save()
+            await trx.commit()
+            return response.ok({
+                status: 200,
+                message: `Paciente(a) ${patient.name} excluído com sucesso`
+            })
+        } catch (error) {
+            await trx.rollback()
+            return "Não foi possível realizar a ação, por favor, tente mais tarde"
         }
     }
 }

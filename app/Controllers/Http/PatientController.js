@@ -19,5 +19,8 @@ class PatientController extends BaseController {
   async update({ request, response, params }) {
     return await this.PatientRepository.update({ request, response, params })
   }
+  async destroy({ request, response, params }) {
+    return await this.PatientRepository.destroy({ request, response, params })
+  }
 }
 module.exports = PatientController
