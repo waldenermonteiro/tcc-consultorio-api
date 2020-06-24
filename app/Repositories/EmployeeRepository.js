@@ -11,11 +11,20 @@ class EmployeeRepository extends BaseRepository {
         this.UserValidator = new UserValidator()
     }
     async index({ request, response }) {
-        const items = await this.Model.query().filter(request.all()).with('user.profile').with('specialitie').fetch()
-        return response.ok({
-            status: 200,
-            data: items
-        })
+        try {
+            const requestParams = request.all();
+            let items = await this.Model.query().filter(request.all()).with('user.profile').with('specialitie').fetch()
+            if (requestParams.profile_id) {
+                items = items.toJSON().filter((item) => item.user.profile_id === parseInt(requestParams.profile_id));
+              }
+            return response.ok({
+                status: 200,
+                data: items
+            })
+          } catch (error) {
+              console.log(error)
+            return this.messageNotExistItem(response);
+          }
     }
     async indexOnlyTrashed({ request, response }) {
         const items = await this.Model.query().withTrashed().with('user').fetch()
@@ -66,6 +75,25 @@ class EmployeeRepository extends BaseRepository {
         } catch (error) {
             await trx.rollback()
             return this.messagesValidations([validation, validationUser], response)
+        }
+    }
+    async destroy({ request, response, params }) {
+        const trx = await Database.beginTransaction()
+        try {
+            const employee = await this.Model.findByOrFail('id', params.id)
+            await employee.delete(trx)
+            await employee.save()
+            const user = await this.User.findByOrFail('id', employee.user_id)
+            await user.delete(trx)
+            await user.save()
+            await trx.commit()
+            return response.ok({
+                status: 200,
+                message: `Funcionário(a) ${employee.name} excluído com sucesso`
+            })
+        } catch (error) {
+            await trx.rollback()
+            return "Não foi possível realizar a ação, por favor, tente mais tarde"
         }
     }
 }

@@ -40,6 +40,7 @@ class MedicalScheduleRepository extends BaseRepository {
     const data = request.only(this.Validator.inputsAlterStatus);
     const validation = await validateAll(data, this.Validator.rulesAlterStatus(), this.Validator.messages);
     try {
+      if (validation.fails()) throw Error();
       const item = await this.Model.findByOrFail("id", params.id);
       const dataDefinitived = { ...item.$attributes, status: data.status };
       await item.merge(dataDefinitived);
@@ -59,14 +60,18 @@ class MedicalScheduleRepository extends BaseRepository {
     const validation = await validateAll(data.medicalSchedule, this.Validator.rulesFinishConsult(), this.Validator.messages);
     const trx = await Database.beginTransaction();
     try {
+      if (validation.fails()) throw Error();
       const medicalSchedule = await this.Model.findByOrFail("id", params.id);
-      await medicalSchedule.merge({ ...data.medicalSchedule, prescription_medicaments: JSON.stringify(data.medicalSchedule.prescription_medicaments), status: "Finalizada" }, trx);
+      console.log(dataRequestExam)
       if (dataRequestExam.requestExam) {
         for (const rexam of dataRequestExam.requestExam) {
+          console.log(rexam)
           const requestExam = await this.RequestExam.create({ ...rexam, medical_schedule_id: params.id, status: "Agendado" }, trx);
+          console.log(requestExam)
           requestExam.save();
         }
       }
+      await medicalSchedule.merge({ ...data.medicalSchedule, prescription_medicaments: JSON.stringify(data.medicalSchedule.prescription_medicaments), status: "Finalizada" }, trx);
       await medicalSchedule.save();
       await trx.commit();
       return response.ok({

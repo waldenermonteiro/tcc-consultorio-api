@@ -8,6 +8,10 @@
 *     tags:
 *       - Profile
 *     summary: List Profiles
+*     parameters:
+*       - name: name
+*         in: query
+*         type: string
 *     responses:
 *       200:
 *         example:

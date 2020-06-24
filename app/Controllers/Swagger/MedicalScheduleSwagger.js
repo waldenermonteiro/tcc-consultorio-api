@@ -22,6 +22,9 @@
 *         in: query
 *         type: integer
 *         format: "int32"
+*       - name: status
+*         in: query
+*         type: string
 *     responses:
 *       200:
 *         description: Send hello message

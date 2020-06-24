@@ -1,4 +1,7 @@
 'use strict'
+const Validator = use("Validator");
+const notExistsRule = use("App/Validators/Customs/NotExists");
+Validator.extend("notExists", notExistsRule);
 class StoreSpecialitie {
   get name(){
     return 'Especialidade'
@@ -12,8 +15,15 @@ class StoreSpecialitie {
       name: `required|unique:specialities,name,id,${specialitieId}|max:50`
     }
   }
+  rulesDestroy () {
+    return {
+      id: 'notExists:employees,specialitie_id',
+
+    }
+  }
   get messages () {
     return {
+      'id.notExists': 'Esta especialidade está sendo utilizada, por favor, resolva as pendências.',
       'name.required': 'O campo nome é obrigatório.',
       'name.unique': 'Já existe uma especialidade com esse nome, por favor, escolha outro.',
       'name.max': 'O campo nome aceita até 50 caracteres, por favor, tente novamente.',

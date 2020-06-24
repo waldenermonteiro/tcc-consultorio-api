@@ -8,10 +8,15 @@
 *       - Request Exam
 *     summary: List Request Exam
 *     parameters:
-*       - name: title
-*         description: Title of the Request Exams
+*       - name: created_at
 *         in: query
-*         required: false
+*         type: string
+*       - name: type_exam_id
+*         in: query
+*         type: integer
+*         format: "int32"
+*       - name: status
+*         in: query
 *         type: string
 *     responses:
 *       200:

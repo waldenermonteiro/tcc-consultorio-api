@@ -8,10 +8,8 @@
 *       - Type Exam
 *     summary: List Type Exam
 *     parameters:
-*       - name: title
-*         description: Title of the Type Exams
+*       - name: name
 *         in: query
-*         required: false
 *         type: string
 *     responses:
 *       200:

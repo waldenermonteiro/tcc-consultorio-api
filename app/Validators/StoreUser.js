@@ -15,6 +15,9 @@ class StoreUser {
   get inputsLogin() {
     return ['email', 'password']
   }
+  get inputsPatient() {
+    return ['email']
+  }
   get inputsAlterPassword() {
     return ['password']
   }
@@ -36,6 +39,11 @@ class StoreUser {
     return {
       email: `required`,
       password: 'required'
+    }
+  }
+  get rulesPatient() {
+    return {
+      email: `required`
     }
   }
   get rulesAlterPassword() {

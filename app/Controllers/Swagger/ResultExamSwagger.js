@@ -8,11 +8,13 @@
 *       - Result Exam
 *     summary: List Result Exam
 *     parameters:
-*       - name: title
-*         description: Title of the Result Exams
+*       - name: created_at
 *         in: query
-*         required: false
 *         type: string
+*       - name: medical_schedule_id
+*         in: query
+*         type: integer
+*         format: "int32"
 *     responses:
 *       200:
 *         description: Send hello message

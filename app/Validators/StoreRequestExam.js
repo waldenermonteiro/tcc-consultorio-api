@@ -12,6 +12,9 @@ class StoreRequestExam {
   get inputsAlterStatus() {
     return ["status"];
   }
+  get inputsFinishConsult() {
+    return ["requestExam"];
+  }
   rules() {
     return {
       observation: `max:500`,

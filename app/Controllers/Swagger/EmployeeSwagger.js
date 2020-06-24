@@ -8,6 +8,13 @@
 *       - Employee
 *     summary: List Employee
 *     parameters:
+*       - name: name
+*         in: query
+*         type: string
+*       - name: profile_id
+*         in: query
+*         type: integer
+*         format: "int32"
 *       - name: specialitie_id
 *         in: query
 *         type: integer
