@@ -13,7 +13,6 @@ class PatientRepository extends BaseRepository {
   }
   async index({ request, response }) {
     const items = await this.Model.query().filter(request.all()).with("user").fetch();
-    console.log(await this.getProfilesAndFiltered())
     return response.ok({
       status: 200,
       data: items,

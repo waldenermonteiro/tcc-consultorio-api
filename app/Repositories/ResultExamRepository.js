@@ -31,7 +31,6 @@ class ResultExamRepository extends BaseRepository {
         data: items,
       });
     } catch (error) {
-      console.log(error);
       return this.messageNotExistItem(response);
     }
   }
@@ -53,7 +52,6 @@ class ResultExamRepository extends BaseRepository {
         message: `${this.Validator.name} cadastrado(a) com sucesso`,
       });
     } catch (error) {
-      console.log(error);
       return this.messagesValidation(validation, response);
     }
   }

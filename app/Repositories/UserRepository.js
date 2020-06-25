@@ -86,7 +86,6 @@ class UserRepository extends BaseRepository {
     const data = request.only(this.Validator.inputsAlterPassword);
     const validation = await validateAll(data, this.Validator.rulesAlterPassword, this.Validator.messages);
     try {
-      console.log(params);
       const item = await this.Model.findByOrFail("id", params.id);
       const dataDefinitived = { ...item.$attributes, password: data.password };
       await item.merge(dataDefinitived);
@@ -97,7 +96,6 @@ class UserRepository extends BaseRepository {
         message: `Senha atualizada com sucesso`,
       });
     } catch (error) {
-      console.log(error);
       return this.messagesValidation(validation, response);
     }
   }

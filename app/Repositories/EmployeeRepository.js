@@ -22,7 +22,6 @@ class EmployeeRepository extends BaseRepository {
                 data: items
             })
           } catch (error) {
-              console.log(error)
             return this.messageNotExistItem(response);
           }
     }

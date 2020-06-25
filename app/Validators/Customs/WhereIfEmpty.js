@@ -13,7 +13,6 @@ const whereIfEmpty = async (data, field, message, args, get) => {
   const [table, column] = args;
   const result = await Database.table(table).where({ employee_id: data.employee_id, status: "Agendada", date_appointment: data.date_appointment })
   if (result.length !== 0) {
-    console.log('teste')
     throw message;
   }
 };
