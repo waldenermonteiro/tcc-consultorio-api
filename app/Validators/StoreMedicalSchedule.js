@@ -18,12 +18,11 @@ class StoreDoctor {
     return ["medicalSchedule"];
   }
   rules(medicalScheduleId) {
-    medicalScheduleId = medicalScheduleId || 0
+    medicalScheduleId = medicalScheduleId || 0;
     return {
-      name: `required|unique:medical_schedules,name,id,${medicalScheduleId}`,
-      date_appointment: `required|whereIfEmpty:medical_schedules`,
+      name: `required`,
+      date_appointment: `required|whereIfEmpty:medical_schedules,${medicalScheduleId}`,
       observation: `max:500`,
-      patient_id: 'required|exists:patients,id',
       employee_id: "required|exists:employees,id",
     };
   }
@@ -35,19 +34,18 @@ class StoreDoctor {
   rulesFinishConsult() {
     return {
       observation: `max:500`,
-      prescription_medicaments: `max:2000`
+      prescription_medicaments: `max:2000`,
     };
   }
   get messages() {
     return {
       "name.required": "O campo nome é obrigatório.",
-      "name.unique": "Já existe uma consulta médica com esse nome, por favor, escolha outro.",
       "date_appointment.required": "O campo data da consulta é obrigatório.",
       "date_appointment.whereIfEmpty": "Já possui uma consulta neste dia e horário, por favor, escolha outro.",
       "observation.max": "O campo observação da consulta aceita até 500 caracteres, por favor, tente novamente.",
       "status.required": "O campo status é obrigatório.",
-      'patient_id.required': 'O campo paciente é obrigatório.',
-      'patient_id.exists' :'Paciente não encontrado.',
+      "patient_id.required": "O campo paciente é obrigatório.",
+      "patient_id.exists": "Paciente não encontrado.",
       "employee_id.required": "O campo médico é obrigatório.",
       "employee_id.exists": "Médico não encontrado.",
     };
