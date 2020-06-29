@@ -3,7 +3,7 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use("Schema");
 
-class RemoveCascadeInEmployees extends Schema {
+class RemoveCascadeInPatients extends Schema {
   up() {
     this.table("patients", (table) => {
       table.integer("user_id").alter();
@@ -17,4 +17,4 @@ class RemoveCascadeInEmployees extends Schema {
   }
 }
 
-module.exports = RemoveCascadeInEmployees;
+module.exports = RemoveCascadeInPatients;
