@@ -7,7 +7,7 @@ class PatientRepository extends BaseRepository {
     super(Model, Validator);
     this.Model = Model;
     this.User = User;
-    this.Profile = Profile
+    this.Profile = Profile;
     this.Validator = new Validator();
     this.UserValidator = new UserValidator();
   }
@@ -19,9 +19,9 @@ class PatientRepository extends BaseRepository {
     });
   }
   async getProfilesAndFiltered() {
-    let items = await this.Profile.query().fetch()
-    items = items.toJSON().filter((profile) => profile.name.toLowerCase() === 'paciente')
-    return items[0]
+    let items = await this.Profile.query().fetch();
+    items = items.toJSON().filter((profile) => profile.name.toLowerCase() === "paciente");
+    return items[0];
   }
   async store({ request, response }) {
     const data = request.only(this.Validator.inputs);
@@ -31,7 +31,7 @@ class PatientRepository extends BaseRepository {
     const trx = await Database.beginTransaction();
     try {
       if (validation.fails()) throw Error();
-      const profilePatient = await this.getProfilesAndFiltered()
+      const profilePatient = await this.getProfilesAndFiltered();
       const user = await this.User.create({ ...dataUser, profile_id: profilePatient.id, password: "passwordNotDefined" }, trx);
       user.save();
       const patient = await this.Model.create({ ...data, user_id: user.id }, trx);
@@ -71,8 +71,11 @@ class PatientRepository extends BaseRepository {
     }
   }
   async destroy({ request, response, params }) {
+    const data = { id: params.id }
     const trx = await Database.beginTransaction();
+    const validation = await validateAll(data, this.Validator.rulesDestroy(), this.Validator.messages);
     try {
+      if (validation.fails()) throw Error();
       const patient = await this.Model.findByOrFail("id", params.id);
       await patient.delete(trx);
       await patient.save();
@@ -86,7 +89,7 @@ class PatientRepository extends BaseRepository {
       });
     } catch (error) {
       await trx.rollback();
-      return "Não foi possível realizar a ação, por favor, tente mais tarde";
+      return this.messagesValidation(validation, response)
     }
   }
 }
