@@ -1,7 +1,9 @@
 "use strict";
 const Validator = use("Validator");
 const existCustomRule = use("App/Validators/Customs/Exists");
+const notExistsRule = use("App/Validators/Customs/NotExists");
 Validator.extend("exists", existCustomRule);
+Validator.extend("notExists", notExistsRule);
 class StorePatient {
   get name() {
     return "Paciente";
@@ -25,8 +27,15 @@ class StorePatient {
       sex: "required",
     };
   }
+  rulesDestroy () {
+    return {
+      id: 'notExists:medical_schedules,patient_id',
+
+    }
+  }
   get messages() {
     return {
+      'id.notExists': 'Este paciente está sendo utilizado, por favor, resolva as pendências.',
       "name.required": "O campo nome é obrigatório.",
       "name.unique": "Já existe um paciente com esse nome, por favor, tente novamente.",
       "name.max": "O campo nome aceita até 100 caracteres, por favor, tente novamente.",

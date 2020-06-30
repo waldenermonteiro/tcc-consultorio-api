@@ -62,12 +62,9 @@ class MedicalScheduleRepository extends BaseRepository {
     try {
       if (validation.fails()) throw Error();
       const medicalSchedule = await this.Model.findByOrFail("id", params.id);
-      console.log(dataRequestExam)
       if (dataRequestExam.requestExam) {
         for (const rexam of dataRequestExam.requestExam) {
-          console.log(rexam)
           const requestExam = await this.RequestExam.create({ ...rexam, medical_schedule_id: params.id, status: "Agendado" }, trx);
-          console.log(requestExam)
           requestExam.save();
         }
       }
@@ -79,7 +76,6 @@ class MedicalScheduleRepository extends BaseRepository {
         message: `Consulta finalizada com sucesso`,
       });
     } catch (error) {
-      console.log(error);
       await trx.rollback();
       return this.messagesValidation(validation, response);
     }

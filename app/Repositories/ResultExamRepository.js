@@ -12,7 +12,14 @@ class ResultExamRepository extends BaseRepository {
   async index({ request, response }) {
     try {
       const requestParams = request.all();
-      let items = await this.Model.query().orderBy('created_at','desc').filter(request.all()).with("requestExam").with("medicalSchedule.employee").with("medicalSchedule.patient").fetch();
+      let items = await this.Model.query()
+        .orderBy("created_at", "desc")
+        .filter(request.all())
+        .with("requestExam")
+        .with("medicalSchedule.employee")
+        .with("medicalSchedule.patient")
+        .with("requestExam.typeExam")
+        .fetch();
       if (requestParams.patient_id) {
         items = items.toJSON().filter((item) => item.medicalSchedule.patient_id === parseInt(requestParams.patient_id));
       }
@@ -24,7 +31,6 @@ class ResultExamRepository extends BaseRepository {
         data: items,
       });
     } catch (error) {
-      console.log(error);
       return this.messageNotExistItem(response);
     }
   }
@@ -46,7 +52,6 @@ class ResultExamRepository extends BaseRepository {
         message: `${this.Validator.name} cadastrado(a) com sucesso`,
       });
     } catch (error) {
-      console.log(error);
       return this.messagesValidation(validation, response);
     }
   }
