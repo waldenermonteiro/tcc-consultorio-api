@@ -17,13 +17,15 @@ class AlterAllRequiredPatientSchema extends Schema {
   }
 
   down() {
-    table.string("name", 100).notNullable().alter();
-    table.date("birth_date").notNullable().alter();
-    table.string("rg", 8).notNullable().alter();
-    table.string("address", 250).notNullable().alter();
-    table.string("city", 50).notNullable().alter();
-    table.string("state", 30).notNullable().alter();
-    table.string("sex", 10).notNullable().alter();
+    this.table("patients", (table) => {
+      table.string("name", 100).notNullable().alter();
+      table.date("birth_date").notNullable().alter();
+      table.string("rg", 8).notNullable().alter();
+      table.string("address", 250).notNullable().alter();
+      table.string("city", 50).notNullable().alter();
+      table.string("state", 30).notNullable().alter();
+      table.string("sex", 10).notNullable().alter();
+    });
   }
 }
 

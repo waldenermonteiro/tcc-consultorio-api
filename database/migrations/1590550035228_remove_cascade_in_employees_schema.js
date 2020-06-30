@@ -5,15 +5,15 @@ const Schema = use("Schema");
 
 class RemoveCascadeInEmployees extends Schema {
   up() {
-    this.table("employees", (table) => {
-      table.integer("user_id").alter();
-    });
+    // this.table("employees", (table) => {
+    //   table.integer("user_id").alter();
+    // });
   }
 
   down() {
-    this.table("employees", (table) => {
-      table.foreign("user_id").references("users.id").onDelete("cascade").alter();
-    });
+    // this.table("employees", (table) => {
+    //   table.foreign("user_id").references("users.id").onDelete("cascade").alter();
+    // });
   }
 }
 

@@ -18,7 +18,7 @@ class PatientSchema extends Schema {
       table.timestamps()
       table.timestamp('deleted_at')
       table.integer('user_id').unsigned();
-      table.foreign('user_id').references('users.id').onDelete('cascade');
+      table.foreign('user_id').references('users.id');
     })
   }
 
