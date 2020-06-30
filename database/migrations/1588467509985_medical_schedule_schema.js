@@ -12,9 +12,8 @@ class MedicalScheduleSchema extends Schema {
       table.enu('status', ['Agendada', 'Em andamento', 'Finalizada', 'Cancelada']).notNullable()
       table.timestamps()
       table.timestamp('deleted_at')
-      table.integer('patient_id').unsigned().notNullable().references('patients.id').onDelete('cascade')
-      table.integer('prescription_medicament_id').unsigned().references('prescription_medicaments.id').onDelete('cascade')
-      table.integer('employee_id').unsigned().notNullable().references('employees.id').onDelete('cascade')
+      table.integer('patient_id').unsigned().notNullable().references('patients.id')
+      table.integer('employee_id').unsigned().notNullable().references('employees.id')
     })
   }
 

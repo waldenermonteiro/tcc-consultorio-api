@@ -12,8 +12,8 @@ class EmployeesSchema extends Schema {
       table.timestamp('deleted_at')
       table.integer('user_id').unsigned().notNullable()
       table.integer('specialitie_id').unsigned();
-      table.foreign('user_id').references('users.id').onDelete('cascade');
-      table.foreign('specialitie_id').references('specialities.id').onDelete('cascade');
+      table.foreign('user_id').references('users.id');
+      table.foreign('specialitie_id').references('specialities.id');
     })
   }
 

@@ -6,7 +6,7 @@ const Schema = use("Schema");
 class AddMedicalSchedulesIdInResultExams extends Schema {
   up() {
     this.table("result_exams", (table) => {
-     table.integer('medical_schedule_id').unsigned().notNullable().references('medical_schedules.id').onDelete('cascade')
+     table.integer('medical_schedule_id').unsigned().notNullable().references('medical_schedules.id')
     });
   }
 
