@@ -43,7 +43,6 @@ class UserRepository extends BaseRepository {
       await this.verifyPassword(password, hashedPassword);
       return await this.userLogger(params);
     } catch (error) {
-      console.log(error)
       return params.response.badRequest({ status: 400, errors: [{ message: `Email ou senha inválidos` }] });
     }
   }
