@@ -18,7 +18,6 @@ class UserRepository extends BaseRepository {
       const params = { auth, request, response, self: this };
       return await this.getUser(params);
     } catch (error) {
-      console.log(error)
       return this.messagesValidation(validation, response);
     }
   }
@@ -44,6 +43,7 @@ class UserRepository extends BaseRepository {
       await this.verifyPassword(password, hashedPassword);
       return await this.userLogger(params);
     } catch (error) {
+      console.log(error)
       return params.response.badRequest({ status: 400, errors: [{ message: `Email ou senha inválidos` }] });
     }
   }
