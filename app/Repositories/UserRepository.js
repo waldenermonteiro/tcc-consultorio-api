@@ -18,6 +18,7 @@ class UserRepository extends BaseRepository {
       const params = { auth, request, response, self: this };
       return await this.getUser(params);
     } catch (error) {
+      console.log(error)
       return this.messagesValidation(validation, response);
     }
   }
