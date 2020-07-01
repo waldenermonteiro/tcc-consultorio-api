@@ -39,6 +39,7 @@ class EmployeeRepository extends BaseRepository {
         const validationUser = await validateAll(dataUser, this.UserValidator.rules(), this.UserValidator.messages)
         const trx = await Database.beginTransaction()
         try {
+            if (validation.fails()) throw Error();
             const user = await this.User.create({ ...dataUser}, trx)
             user.save()
             const employee = await this.Model.create({ ...data, user_id: user.id }, trx)
@@ -57,9 +58,10 @@ class EmployeeRepository extends BaseRepository {
         const data = request.only(this.Validator.inputs)
         const validation = await validateAll(data, this.Validator.rules(params.id), this.Validator.messages)
         const dataUser = request.only(this.UserValidator.inputsUpdate)
-        const validationUser = await validateAll(dataUser, this.UserValidator.rulesUpdate(params.user_id), this.UserValidator.messages)
+        const validationUser = await validateAll(dataUser, this.UserValidator.rulesUpdate(data.user_id), this.UserValidator.messages)
         const trx = await Database.beginTransaction()
         try {
+            if (validation.fails()) throw Error();
             const employee = await this.Model.findByOrFail('id', params.id)
             await employee.merge(data, trx)
             await employee.save()

@@ -2,22 +2,24 @@
 const Validator = use("Validator");
 const existCustomRule = use("App/Validators/Customs/Exists");
 const notExistsRule = use("App/Validators/Customs/NotExists");
+const updateUniqueCustomRule = use("App/Validators/Customs/UpdateUnique");
 Validator.extend("exists", existCustomRule);
 Validator.extend("notExists", notExistsRule);
+Validator.extend("updateUnique", updateUniqueCustomRule);
 class StorePatient {
   get name() {
     return "Paciente";
   }
   get inputs() {
-    return ["name", "birth_date", "rg", "cpf","cep", "district", "complement", "address", "city", "state", "sex"];
+    return ["name", "birth_date", "rg", "cpf","cep", "district", "complement", "address", "city", "state", "sex", "user_id"];
   }
   rules(patientId) {
     patientId = patientId || 0;
     return {
-      name: `required|unique:patients,name,id,${patientId}|max:100`,
+      name: `required|updateUnique:patients,name,${patientId}|max:100`,
       birth_date: "required|date",
-      rg: `required|unique:patients,rg,id,${patientId}|max:8`,
-      cpf: `unique:patients,cpf,id,${patientId}|max:11`,
+      rg: `required|updateUnique:patients,rg,${patientId}|max:8`,
+      cpf: `updateUnique:patients,cpf,${patientId}|max:11`,
       cep: "required|max:8",
       district: "required|max:30",
       complement: "required|max:30",
@@ -38,13 +40,16 @@ class StorePatient {
       'id.notExists': 'Este paciente está sendo utilizado, por favor, resolva as pendências.',
       "name.required": "O campo nome é obrigatório.",
       "name.unique": "Já existe um paciente com esse nome, por favor, tente novamente.",
+      "name.updateUnique": "Já existe um paciente com esse nome, por favor, tente novamente.",
       "name.max": "O campo nome aceita até 100 caracteres, por favor, tente novamente.",
       "birth_date.required": "O campo data de nascimento é obrigatório.",
       "birth_date.date": "O campo data está em um formato inválido, por favor, tente novamente.",
       "rg.required": "O campo rg é obrigatório.",
       "rg.unique": "Já existe um paciente com esse rg, por favor, tente novamente.",
+      "rg.updateUnique": "Já existe um paciente com esse rg, por favor, tente novamente.",
       "rg.max": "O campo rg aceita até 8 caracteres, por favor, tente novamente.",
       "cpf.unique": "Já existe um paciente com esse cpf, por favor, tente novamente.",
+      "cpf.updateUnique": "Já existe um paciente com esse cpf, por favor, tente novamente.",
       "cpf.max": "O campo cpf aceita até 11 caracteres, por favor, tente novamente.",
       "cep.required": "O campo cep é obrigatório.",
       "cep.max": "O campo cep aceita até 8 caracteres, por favor, tente novamente.",
