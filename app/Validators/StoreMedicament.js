@@ -13,20 +13,19 @@ class StoreMedicament {
      rules (medicamentId) {
       medicamentId = medicamentId || 0
       return {
-        name: `required|unique:medicaments,name,id,${medicamentId}|max:100`,
-        factory: `required|max:50`,
-        manufacturer: 'required|max:50'
+        name: `required|max:200`,
+        factory: `required|max:100`,
+        manufacturer: 'required|max:100'
       }
     }
     get messages () {
       return {
         'name.required': 'O campo nome é obrigatório.',
-        'name.unique': 'Já existe um medicamento com esse nome, por favor, escolha outro.',
-        'name.max': 'O campo nome aceita até 100 caracteres, por favor, tente novamente.',
+        'name.max': 'O campo nome aceita até 200 caracteres, por favor, tente novamente.',
         'factory.required': 'O campo fábrica é obrigatório.',
-        'factory.max': 'O campo fábrica aceita até 50 caracteres, por favor, tente novamente.',
+        'factory.max': 'O campo fábrica aceita até 100 caracteres, por favor, tente novamente.',
         'manufacturer.required': 'O campo fabricante é obrigatório.',
-        'manufacturer.max': 'O campo fabricante aceita até 50 caracteres, por favor, tente novamente.'
+        'manufacturer.max': 'O campo fabricante aceita até 100 caracteres, por favor, tente novamente.'
       }
     } 
 }
