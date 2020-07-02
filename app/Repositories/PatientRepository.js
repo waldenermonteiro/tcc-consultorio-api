@@ -43,6 +43,7 @@ class PatientRepository extends BaseRepository {
         message: `Paciente ${patient.name} cadastrado(a) com sucesso`,
       });
     } catch (error) {
+      console.log(error)
       await trx.rollback();
       return this.messagesValidations([validationUser, validation], response);
     }
@@ -51,9 +52,10 @@ class PatientRepository extends BaseRepository {
     const data = request.only(this.Validator.inputs);
     const dataUser = request.only(this.UserValidator.inputsUpdate);
     const validation = await validateAll(data, this.Validator.rules(params.id), this.Validator.messages);
-    const validationUser = await validateAll(dataUser, this.UserValidator.rulesUpdate(params.user_id), this.UserValidator.messages);
+    const validationUser = await validateAll(dataUser, this.UserValidator.rulesUpdate(data.user_id), this.UserValidator.messages);
     const trx = await Database.beginTransaction();
     try {
+      if (validation.fails()) throw Error();
       const patient = await this.Model.findByOrFail("id", params.id);
       await patient.merge(data, trx);
       await patient.save();

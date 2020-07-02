@@ -71,8 +71,10 @@ class MedicalScheduleRepository extends BaseRepository {
       await medicalSchedule.merge({ ...data.medicalSchedule, prescription_medicaments: JSON.stringify(data.medicalSchedule.prescription_medicaments), status: "Finalizada" }, trx);
       await medicalSchedule.save();
       await trx.commit();
+      const medicalScheduleFinished = await this.Model.query().with("patient").with("employee.specialitie").orderBy("date_appointment", "desc").where("id", params.id).first();
       return response.ok({
         status: 200,
+        data: medicalScheduleFinished,
         message: `Consulta finalizada com sucesso`,
       });
     } catch (error) {

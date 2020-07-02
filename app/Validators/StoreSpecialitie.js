@@ -2,6 +2,8 @@
 const Validator = use("Validator");
 const notExistsRule = use("App/Validators/Customs/NotExists");
 Validator.extend("notExists", notExistsRule);
+const updateUniqueCustomRule = use("App/Validators/Customs/UpdateUnique");
+Validator.extend("updateUnique", updateUniqueCustomRule);
 class StoreSpecialitie {
   get name(){
     return 'Especialidade'
@@ -12,7 +14,7 @@ class StoreSpecialitie {
   rules (specialitieId) {
     specialitieId = specialitieId || 0
     return {
-      name: `required|unique:specialities,name,id,${specialitieId}|max:50`
+      name: `required|updateUnique:specialities,name,${specialitieId}|max:50`
     }
   }
   rulesDestroy () {
@@ -25,7 +27,7 @@ class StoreSpecialitie {
     return {
       'id.notExists': 'Esta especialidade está sendo utilizada, por favor, resolva as pendências.',
       'name.required': 'O campo nome é obrigatório.',
-      'name.unique': 'Já existe uma especialidade com esse nome, por favor, escolha outro.',
+      'name.updateUnique': 'Já existe uma especialidade com esse nome, por favor, escolha outro.',
       'name.max': 'O campo nome aceita até 50 caracteres, por favor, tente novamente.',
     }
   }

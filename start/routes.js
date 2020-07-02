@@ -9,7 +9,7 @@ Route.group('v1', function () {
     Route.resource('employees', 'EmployeeController').apiOnly().middleware(['auth'])
     Route.resource('medicaments', 'MedicamentController').apiOnly().middleware(['auth'])
     Route.resource('patients', 'PatientController').apiOnly().middleware(['auth'])
-    Route.resource('profiles', 'ProfileController').apiOnly().middleware(['auth'])
+    Route.resource('profiles', 'ProfileController').apiOnly()
     Route.resource('specialities', 'SpecialitieController').apiOnly().middleware(['auth'])
     Route.resource('typeExams', 'TypeExamController').apiOnly().middleware(['auth'])
     Route.resource('prescriptionMedicament', 'PrescriptionMedicamentController').apiOnly().middleware(['auth'])
